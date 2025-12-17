@@ -10,7 +10,7 @@ services:
     volumes:
       # Mapeia a tua pasta atual para dentro do Nginx.
       # Isto permite que edites no VS Code e vejas as alterações logo no browser (F5)
-      - ./:/usr/share/nginx/html
+      - ./src:/usr/share/nginx/html
     networks:
       - dmw_net
 

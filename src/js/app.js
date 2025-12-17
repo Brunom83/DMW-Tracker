@@ -1,6 +1,7 @@
 import { Moedas } from './moedas.js';
 import { Eggs } from './eggs.js';
 import { ToursManager } from './tours.js';
+import { DataManager } from './data_manager.js';
 
 class DMWTracker {
     constructor() {
@@ -8,6 +9,7 @@ class DMWTracker {
         this.moedas = new Moedas();
         this.eggs = new Eggs();
         this.tours = new ToursManager();
+        this.dataManager = new DataManager();
 
         // Configurar Callbacks (Quando os dados mudam, atualiza o Dashboard)
         this.moedas.setOnChangeCallback(() => this.atualizarDashboard());
@@ -60,11 +62,10 @@ class DMWTracker {
             document.getElementById('resultadoGanhosDash').className = moedasGanhos.className;
         }
 
-        // Atualiza Eggs no Dashboard
-        this.eggs.atualizarCalculadoraEggs(); // Garante que o UI está fresco
-        document.getElementById('totalBitsEggsDash').textContent = document.getElementById('totalBitsEggs').textContent;
-        document.getElementById('totalMegaEggsDash').textContent = document.getElementById('totalMegaEggs').textContent;
-        document.getElementById('totalTeraEggsDash').textContent = document.getElementById('totalTeraEggs').textContent;
+        // Eggs (ATUALIZADO PARA O NOVO VISUAL)
+        this.eggs.atualizarCalculadoraEggs();
+        const totalEggsTexto = document.getElementById('totalEggsConsolidado').textContent;
+        document.getElementById('totalEggsDash').textContent = totalEggsTexto;
 
         // Atualiza Tours no Dashboard
         this.tours.atualizarProximosTours();
