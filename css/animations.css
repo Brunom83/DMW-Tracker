@@ -1,0 +1,60 @@
+/* === Fade In === */
+.fade-in {
+    animation: fadeIn 0.7s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+/* === Bounce === */
+.bounce {
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* === Slide === */
+.slide-left {
+    animation: slideLeft 0.6s ease forwards;
+}
+
+@keyframes slideLeft {
+    0% {opacity: 0; transform: translateX(20px);}
+    100% {opacity: 1; transform: translateX(0);}
+}
+
+/* === Hover Neon Glow === */
+.glow-hover {
+    transition: all 0.2s ease;
+}
+
+.glow-hover:hover {
+    text-shadow: 0 0 8px #0ff, 0 0 15px #0ff;
+    box-shadow: 0 0 15px rgba(0,255,255,0.3);
+}
+
+/* === Cards animados === */
+.animated-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.7s ease forwards;
+}
+
+/* === Botões rápidos === */
+.quick-action-btn {
+    background-color: #0ff1a6;
+    color: #111;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.quick-action-btn:hover {
+    box-shadow: 0 0 12px #0ff;
+    transform: translateY(-2px);
+}

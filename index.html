@@ -1,0 +1,433 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMW Farm Tracker v1.2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-dark text-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">DMW Tracker v1.2</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTabs" aria-controls="navbarTabs" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTabs">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" id="dashboard-tab" href="#" onclick="switchToTab('dashboard')">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="moedas-tab" href="#" onclick="switchToTab('moedas')">Moedas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="eggs-tab" href="#" onclick="switchToTab('eggs')">Eggs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tours-tab" href="#" onclick="switchToTab('tours')">Tours</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdos das Tabs -->
+    <div class="container mt-4">
+        <!-- Dashboard -->
+<div id="dashboard" class="tab-content">
+    <h3>📊 Dashboard</h3>
+
+    <div class="row g-3">
+        <!-- Ganhos de Moedas -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Ganhos de Moedas</h5>
+                    <p>Antes: <span id="resultadoAntesDash">0T 0M 0Bits</span></p>
+                    <p>Depois: <span id="resultadoDepoisDash">0T 0M 0Bits</span></p>
+                    <p>Ganhos: <span id="resultadoGanhosDash">0T 0M 0Bits</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eggs -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🥚 Eggs</h5>
+                    <p>Total Bits: <span id="totalBitsEggsDash">0</span></p>
+                    <p>Total Mega: <span id="totalMegaEggsDash">0</span></p>
+                    <p>Total Tera: <span id="totalTeraEggsDash">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Próximos Tours -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🏹 Próximos Tours</h5>
+                    <div id="proximosToursDashboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Histórico resumido -->
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🕒 Histórico de Tours</h5>
+                    <div id="historicoToursDashboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Moedas -->
+        <div id="moedas" class="tab-content d-none">
+            <h3>💰 Sistema de Moedas</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="antesTera" class="form-label">Antes (Tera/Mega/Bits)</label>
+                    <input type="number" id="antesTera" class="form-control mb-1" placeholder="Tera">
+                    <input type="number" id="antesMega" class="form-control mb-1" placeholder="Mega">
+                    <input type="number" id="antesBits" class="form-control" placeholder="Bits">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="depoisTera" class="form-label">Depois (Tera/Mega/Bits)</label>
+                    <input type="number" id="depoisTera" class="form-control mb-1" placeholder="Tera">
+                    <input type="number" id="depoisMega" class="form-control mb-1" placeholder="Mega">
+                    <input type="number" id="depoisBits" class="form-control" placeholder="Bits">
+                </div>
+            </div>
+            <button id="calcularBtn" class="btn btn-primary mb-3">Calcular Ganhos</button>
+            <div>
+                <p id="resultadoAntes"></p>
+                <p id="resultadoDepois"></p>
+                <h5 id="resultadoGanhos"></h5>
+            </div>
+        </div>
+
+        <!-- Eggs -->
+        <div id="eggs" class="tab-content d-none">
+            <h3>🥚 Calculadora de Eggs</h3>
+            <div class="mb-3">
+                <label for="tipoEgg" class="form-label">Tipo de Egg</label>
+                <select id="tipoEgg" class="form-select">
+                    <option value="25">Class1 Cracked DigiEgg</option>
+                    <option value="100">Class2 Cracked DigiEgg</option>
+                    <option value="150">Class3 Cracked DigiEgg</option>
+                    <option value="200">Class4 Cracked DigiEgg</option>
+                    <option value="300">Class6 Cracked DigiEgg</option>
+                    <option value="450">Class7 Cracked DigiEgg</option>
+                    <option value="5000">Quest DigiEgg</option>
+                    <option value="125">Class DATA DigiEggs</option>
+                </select>
+                <input type="number" id="quantidadeEgg" class="form-control mt-1" value="0">
+                <button id="adicionarEgg" class="btn btn-success mt-2">Adicionar Egg</button>
+                <button id="copiarParaDepois" class="btn btn-secondary mt-2">Copiar para Depois</button>
+            </div>
+            <div id="listaEggs" class="mb-2"></div>
+            <div>
+                <p>Total Bits: <span id="totalBitsEggs">0</span></p>
+                <p>Total Mega: <span id="totalMegaEggs">0</span></p>
+                <p>Total Tera: <span id="totalTeraEggs">0</span></p>
+            </div>
+        </div>
+
+        <!-- Tours -->
+<div id="tours" class="tab-content d-none">
+    <h3>🏹 Sistema de Tours</h3>
+
+    <!-- Adicionar Horário -->
+    <div class="mb-3 row g-2 align-items-center">
+        <div class="col-auto">
+            <select id="tipoTour" class="form-select">
+                <option value="forest">🌲 Forest Tour</option>
+                <option value="bless">🙏 Bless Tour</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="time" id="horarioTour" class="form-control">
+        </div>
+        <div class="col-auto">
+            <button id="adicionarHorarioBtn" class="btn btn-primary">Adicionar Horário</button>
+        </div>
+    </div>
+
+    <!-- Lista de Horários -->
+    <div id="listaHorarios" class="mb-3"></div>
+
+    <hr class="border-light">
+
+    <!-- Registrar Tour -->
+    <div class="mb-3 row g-2 align-items-center">
+        <div class="col-auto">
+            <select id="tipoTourRegistrar" class="form-select">
+                <option value="forest">🌲 Forest Tour</option>
+                <option value="bless">🙏 Bless Tour</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="number" id="teraGanho" class="form-control" placeholder="Tera ganho">
+        </div>
+        <div class="col-auto">
+            <input type="text" id="detalhesTour" class="form-control" placeholder="Detalhes (opcional)">
+        </div>
+        <div class="col-auto">
+            <input type="number" id="sealsTour" class="form-control" placeholder="Seals">
+        </div>
+        <div class="col-auto">
+            <button id="registrarTourBtn" class="btn btn-success">Registrar Tour</button>
+        </div>
+    </div>
+
+    <!-- Próximos Tours -->
+    <div class="mb-3">
+        <h6>Próximos Tours:</h6>
+        <div id="proximosTours" class="mb-2"></div>
+    </div>
+
+    <!-- Histórico de Tours -->
+    <div class="mb-3">
+        <h6>Histórico de Tours:</h6>
+        <div id="historicoTours"></div>
+    </div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script>
+        // Definir dashboard como aba inicial
+        document.addEventListener("DOMContentLoaded", () => {
+            switchToTab('dashboard');
+        });
+    </script>
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMW Farm Tracker v1.2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-dark text-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">DMW Tracker v1.2</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTabs" aria-controls="navbarTabs" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTabs">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" id="dashboard-tab" href="#" onclick="switchToTab('dashboard')">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="moedas-tab" href="#" onclick="switchToTab('moedas')">Moedas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="eggs-tab" href="#" onclick="switchToTab('eggs')">Eggs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tours-tab" href="#" onclick="switchToTab('tours')">Tours</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdos das Tabs -->
+    <div class="container mt-4">
+        <!-- Dashboard -->
+<div id="dashboard" class="tab-content">
+    <h3>📊 Dashboard</h3>
+
+    <div class="row g-3">
+        <!-- Ganhos de Moedas -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Ganhos de Moedas</h5>
+                    <p>Antes: <span id="resultadoAntesDash">0T 0M 0Bits</span></p>
+                    <p>Depois: <span id="resultadoDepoisDash">0T 0M 0Bits</span></p>
+                    <p>Ganhos: <span id="resultadoGanhosDash">0T 0M 0Bits</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eggs -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🥚 Eggs</h5>
+                    <p>Total Bits: <span id="totalBitsEggsDash">0</span></p>
+                    <p>Total Mega: <span id="totalMegaEggsDash">0</span></p>
+                    <p>Total Tera: <span id="totalTeraEggsDash">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Próximos Tours -->
+        <div class="col-md-4">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🏹 Próximos Tours</h5>
+                    <div id="proximosToursDashboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Histórico resumido -->
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="card bg-secondary text-light">
+                <div class="card-body">
+                    <h5 class="card-title">🕒 Histórico de Tours</h5>
+                    <div id="historicoToursDashboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Moedas -->
+        <div id="moedas" class="tab-content d-none">
+            <h3>💰 Sistema de Moedas</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="antesTera" class="form-label">Antes (Tera/Mega/Bits)</label>
+                    <input type="number" id="antesTera" class="form-control mb-1" placeholder="Tera">
+                    <input type="number" id="antesMega" class="form-control mb-1" placeholder="Mega">
+                    <input type="number" id="antesBits" class="form-control" placeholder="Bits">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="depoisTera" class="form-label">Depois (Tera/Mega/Bits)</label>
+                    <input type="number" id="depoisTera" class="form-control mb-1" placeholder="Tera">
+                    <input type="number" id="depoisMega" class="form-control mb-1" placeholder="Mega">
+                    <input type="number" id="depoisBits" class="form-control" placeholder="Bits">
+                </div>
+            </div>
+            <button id="calcularBtn" class="btn btn-primary mb-3">Calcular Ganhos</button>
+            <div>
+                <p id="resultadoAntes"></p>
+                <p id="resultadoDepois"></p>
+                <h5 id="resultadoGanhos"></h5>
+            </div>
+        </div>
+
+        <!-- Eggs -->
+        <div id="eggs" class="tab-content d-none">
+            <h3>🥚 Calculadora de Eggs</h3>
+            <div class="mb-3">
+                <label for="tipoEgg" class="form-label">Tipo de Egg</label>
+                <select id="tipoEgg" class="form-select">
+                    <option value="25">Class1 Cracked DigiEgg</option>
+                    <option value="100">Class2 Cracked DigiEgg</option>
+                    <option value="150">Class3 Cracked DigiEgg</option>
+                    <option value="200">Class4 Cracked DigiEgg</option>
+                    <option value="300">Class6 Cracked DigiEgg</option>
+                    <option value="450">Class7 Cracked DigiEgg</option>
+                    <option value="5000">Quest DigiEgg</option>
+                    <option value="125">Class DATA DigiEggs</option>
+                </select>
+                <input type="number" id="quantidadeEgg" class="form-control mt-1" value="0">
+                <button id="adicionarEgg" class="btn btn-success mt-2">Adicionar Egg</button>
+                <button id="copiarParaDepois" class="btn btn-secondary mt-2">Copiar para Depois</button>
+            </div>
+            <div id="listaEggs" class="mb-2"></div>
+            <div>
+                <p>Total Bits: <span id="totalBitsEggs">0</span></p>
+                <p>Total Mega: <span id="totalMegaEggs">0</span></p>
+                <p>Total Tera: <span id="totalTeraEggs">0</span></p>
+            </div>
+        </div>
+
+        <!-- Tours -->
+<div id="tours" class="tab-content d-none">
+    <h3>🏹 Sistema de Tours</h3>
+
+    <!-- Adicionar Horário -->
+    <div class="mb-3 row g-2 align-items-center">
+        <div class="col-auto">
+            <select id="tipoTour" class="form-select">
+                <option value="forest">🌲 Forest Tour</option>
+                <option value="bless">🙏 Bless Tour</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="time" id="horarioTour" class="form-control">
+        </div>
+        <div class="col-auto">
+            <button id="adicionarHorarioBtn" class="btn btn-primary">Adicionar Horário</button>
+        </div>
+    </div>
+
+    <!-- Lista de Horários -->
+    <div id="listaHorarios" class="mb-3"></div>
+
+    <hr class="border-light">
+
+    <!-- Registrar Tour -->
+    <div class="mb-3 row g-2 align-items-center">
+        <div class="col-auto">
+            <select id="tipoTourRegistrar" class="form-select">
+                <option value="forest">🌲 Forest Tour</option>
+                <option value="bless">🙏 Bless Tour</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="number" id="teraGanho" class="form-control" placeholder="Tera ganho">
+        </div>
+        <div class="col-auto">
+            <input type="text" id="detalhesTour" class="form-control" placeholder="Detalhes (opcional)">
+        </div>
+        <div class="col-auto">
+            <input type="number" id="sealsTour" class="form-control" placeholder="Seals">
+        </div>
+        <div class="col-auto">
+            <button id="registrarTourBtn" class="btn btn-success">Registrar Tour</button>
+        </div>
+    </div>
+
+    <!-- Próximos Tours -->
+    <div class="mb-3">
+        <h6>Próximos Tours:</h6>
+        <div id="proximosTours" class="mb-2"></div>
+    </div>
+
+    <!-- Histórico de Tours -->
+    <div class="mb-3">
+        <h6>Histórico de Tours:</h6>
+        <div id="historicoTours"></div>
+    </div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script>
+        // Definir dashboard como aba inicial
+        document.addEventListener("DOMContentLoaded", () => {
+            switchToTab('dashboard');
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 454285409cb1d136100e634b8c26f292f45eea12
