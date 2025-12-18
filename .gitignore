@@ -1,0 +1,21 @@
+# === Sistema Operativo (Lixo) ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# === VS Code (Configurações locais só tuas) ===
+.vscode/
+*.code-workspace
+
+# === Logs e Debug ===
+*.log
+npm-debug.log*
+
+# === Docker (Se tiveres volumes locais mapeados que não queres subir) ===
+# Ignora pastas de dados se decidires criar persistência local fora do container no futuro
+dmw-data/
+
+# === Dependências (Se algum dia usares Node.js a sério) ===
+node_modules/
+dist/
+.env
