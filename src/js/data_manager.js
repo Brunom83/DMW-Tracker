@@ -1,5 +1,5 @@
 // src/js/data_manager.js
-import { showAlert } from './utils.js';
+import { showToast } from './utils.js'; // <--- Muda de showAlert para showToast
 
 export class DataManager {
     constructor() {
@@ -22,6 +22,7 @@ export class DataManager {
             moedas: JSON.parse(localStorage.getItem('dmwMoedas')),
             eggs: JSON.parse(localStorage.getItem('dmwEggs')),
             tours: JSON.parse(localStorage.getItem('dmwToursConfig')),
+            dungeons: JSON.parse(localStorage.getItem('dmwDungeons')),
             meta: {
                 version: '1.2',
                 dataBackup: new Date().toLocaleString('pt-PT')
@@ -56,13 +57,14 @@ export class DataManager {
                     if(dados.moedas) localStorage.setItem('dmwMoedas', JSON.stringify(dados.moedas));
                     if(dados.eggs) localStorage.setItem('dmwEggs', JSON.stringify(dados.eggs));
                     if(dados.tours) localStorage.setItem('dmwToursConfig', JSON.stringify(dados.tours));
+                    if(dados.dungeons) localStorage.setItem('dmwDungeons', JSON.stringify(dados.dungeons));
                     
-                    showAlert("✅ Dados restaurados com sucesso!");
-                    setTimeout(() => window.location.reload(), 1000); // Recarrega a página para aplicar
+                    showToast("✅ Dados restaurados com sucesso!", "success"); // <--- Bonito
+                    setTimeout(() => window.location.reload(), 1500); // Dá tempo de ler antes de recarregar
                 }
             } catch (error) {
                 console.error(error);
-                showAlert("❌ Erro ao importar: " + error.message);
+                showToast("Erro ao importar ficheiro!", "error"); // <--- Erro vermelho
             }
         };
         reader.readAsText(file);

@@ -2,6 +2,8 @@ import { Moedas } from './moedas.js';
 import { Eggs } from './eggs.js';
 import { ToursManager } from './tours.js';
 import { DataManager } from './data_manager.js';
+import { DungeonManager } from './dungeons.js';
+import { ChartsManager } from './charts.js';
 
 class DMWTracker {
     constructor() {
@@ -9,7 +11,9 @@ class DMWTracker {
         this.moedas = new Moedas();
         this.eggs = new Eggs();
         this.tours = new ToursManager();
+        this.dungeons = new DungeonManager(); // <--- INICIAR
         this.dataManager = new DataManager();
+        this.charts = new ChartsManager();
 
         // Configurar Callbacks (Quando os dados mudam, atualiza o Dashboard)
         this.moedas.setOnChangeCallback(() => this.atualizarDashboard());
@@ -70,6 +74,9 @@ class DMWTracker {
         // Atualiza Tours no Dashboard
         this.tours.atualizarProximosTours();
         this.tours.atualizarHistoricoTours();
+
+        // <--- NOVO: Atualizar Gráficos
+        this.charts.atualizar(this.eggs, this.tours, this.dungeons);
     }
 }
 
@@ -77,10 +84,3 @@ class DMWTracker {
 document.addEventListener('DOMContentLoaded', () => { 
     window.dmwTracker = new DMWTracker(); 
 });
-
-// Helper Global para as Tabs
-window.switchToTab = function(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('d-none'));
-    const tab = document.getElementById(tabName);
-    if(tab) tab.classList.remove('d-none');
-};

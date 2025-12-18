@@ -1,4 +1,5 @@
-import { showAlert, formatarMoeda } from './utils.js';
+import { showAlert, formatarMoeda } from './utils.js'; // Mantém o que tinhas
+import { Validator } from './validators.js';
 
 export class Moedas {
     constructor() {
@@ -21,18 +22,25 @@ export class Moedas {
 
     calcularGanhos() {
         try {
-            // Ler valores "Antes"
-            const antes = {
-                tera: parseFloat(document.getElementById('antesTera').value) || 0,
-                mega: parseInt(document.getElementById('antesMega').value) || 0,
-                bits: parseInt(document.getElementById('antesBits').value) || 0
-            };
-            // Ler valores "Depois"
-            const depois = {
-                tera: parseFloat(document.getElementById('depoisTera').value) || 0,
-                mega: parseInt(document.getElementById('depoisMega').value) || 0,
-                bits: parseInt(document.getElementById('depoisBits').value) || 0
-            };
+            // Valores "Antes"
+            const aTera = Validator.validatePositiveNumber('antesTera', 'Tera (Antes)');
+            const aMega = Validator.validatePositiveNumber('antesMega', 'Mega (Antes)');
+            const aBits = Validator.validatePositiveNumber('antesBits', 'Bits (Antes)');
+
+            // Valores "Depois"
+            const dTera = Validator.validatePositiveNumber('depoisTera', 'Tera (Depois)');
+            const dMega = Validator.validatePositiveNumber('depoisMega', 'Mega (Depois)');
+            const dBits = Validator.validatePositiveNumber('depoisBits', 'Bits (Depois)');
+
+            // Se ALGUM destes for null (inválido), o validatePositiveNumber já mostrou o erro.
+            // Nós só precisamos de parar a função.
+            if (aTera === null || aMega === null || aBits === null || 
+                dTera === null || dMega === null || dBits === null) {
+                return; // Aborta missão!
+            }
+
+            const antes = { tera: aTera, mega: aMega, bits: aBits };
+            const depois = { tera: dTera, mega: dMega, bits: dBits };
 
             // Converter tudo para Bits totais para facilitar a conta (Matemática segura)
             const totalAntes = (antes.tera * 1000000) + (antes.mega * 1000) + antes.bits;
@@ -64,7 +72,7 @@ export class Moedas {
 
         } catch (error) {
             console.error('Erro ao calcular ganhos:', error);
-            showAlert('Erro ao calcular ganhos. Verifique os valores inseridos.');
+            showAlert('Erro inesperado no sistema. Verifica a consola.');
         }
     }
 

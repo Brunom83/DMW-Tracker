@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DMW Farm Tracker v1.2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-dark text-light">
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">DMW Tracker v1.2</a>
@@ -28,6 +28,9 @@
                         <a class="nav-link" id="eggs-tab" href="#" onclick="switchToTab('eggs')">Eggs</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="dungeons-tab" href="#" onclick="switchToTab('dungeons')">🐉 Dungeons</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="tours-tab" href="#" onclick="switchToTab('tours')">Tours</a>
                     </li>
                     <li class="nav-item">
@@ -38,60 +41,77 @@
         </div>
     </nav>
 
-    <!-- Conteúdos das Tabs -->
     <div class="container mt-4">
-        <!-- Dashboard -->
-<div id="dashboard" class="tab-content">
+        
+        <div id="dashboard" class="tab-content">
     <h3>📊 Dashboard</h3>
 
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-info">🏆 Origem do Lucro</h5>
+                    <div style="position: relative; height: 200px;">
+                        <canvas id="wealthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-success">📈 Lucro Diário (Últimos 7 Dias)</h5>
+                    <div style="position: relative; height: 200px;">
+                        <canvas id="historyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row g-3">
-        <!-- Ganhos de Moedas -->
-        <div class="col-md-4">
-            <div class="card bg-secondary text-light">
-                <div class="card-body">
-                    <h5 class="card-title">💰 Ganhos de Moedas</h5>
-                    <p>Antes: <span id="resultadoAntesDash">0T 0M 0Bits</span></p>
-                    <p>Depois: <span id="resultadoDepoisDash">0T 0M 0Bits</span></p>
-                    <p>Ganhos: <span id="resultadoGanhosDash">0T 0M 0Bits</span></p>
+         </div>
+                <div class="col-md-4">
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body">
+                            <h5 class="card-title">💰 Ganhos de Moedas</h5>
+                            <p>Antes: <span id="resultadoAntesDash">0T 0M 0Bits</span></p>
+                            <p>Depois: <span id="resultadoDepoisDash">0T 0M 0Bits</span></p>
+                            <p>Ganhos: <span id="resultadoGanhosDash">0T 0M 0Bits</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body">
+                            <h5 class="card-title">🥚 Eggs Farmados</h5>
+                            <h3 class="text-info text-center my-3" id="totalEggsDash">0T 0M 0B</h3>
+                            <p class="text-muted text-center small mb-0">Total acumulado</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body">
+                            <h5 class="card-title">🏹 Próximos Tours</h5>
+                            <div id="proximosToursDashboard"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="card bg-secondary text-light">
+                        <div class="card-body">
+                            <h5 class="card-title">🕒 Histórico de Tours</h5>
+                            <div id="historicoToursDashboard"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card bg-secondary text-light">
-                <div class="card-body">
-                    <h5 class="card-title">🥚 Eggs Farmados</h5>
-                    <h3 class="text-info text-center my-3" id="totalEggsDash">0T 0M 0B</h3>
-                    <p class="text-muted text-center small mb-0">Total acumulado</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Próximos Tours -->
-        <div class="col-md-4">
-            <div class="card bg-secondary text-light">
-                <div class="card-body">
-                    <h5 class="card-title">🏹 Próximos Tours</h5>
-                    <div id="proximosToursDashboard"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Histórico resumido -->
-    <div class="row mt-3">
-        <div class="col-12">
-            <div class="card bg-secondary text-light">
-                <div class="card-body">
-                    <h5 class="card-title">🕒 Histórico de Tours</h5>
-                    <div id="historicoToursDashboard"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        <!-- Moedas -->
         <div id="moedas" class="tab-content d-none">
             <h3>💰 Sistema de Moedas</h3>
             <div class="row">
@@ -116,7 +136,6 @@
             </div>
         </div>
 
-        <!-- Eggs -->
         <div id="eggs" class="tab-content d-none">
             <h3>🥚 Calculadora de Eggs</h3>
             <div class="mb-3">
@@ -136,7 +155,6 @@
                 <button id="copiarParaDepois" class="btn btn-secondary mt-2">Copiar para Depois</button>
             </div>
             <div id="listaEggs" class="mb-2"></div>
-    
             <div class="card bg-dark border-info mt-3">
                 <div class="card-body text-center">
                     <h5 class="text-muted">Valor Total dos Eggs</h5>
@@ -145,101 +163,178 @@
             </div>
         </div>
 
-        <!-- Tours -->
-<div id="tours" class="tab-content d-none">
-    <h3>🏹 Sistema de Tours</h3>
-
-    <!-- Adicionar Horário -->
-    <div class="mb-3 row g-2 align-items-center">
-        <div class="col-auto">
-            <select id="tipoTour" class="form-select">
-                <option value="forest">🌲 Forest Tour</option>
-                <option value="bless">🙏 Bless Tour</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <input type="time" id="horarioTour" class="form-control">
-        </div>
-        <div class="col-auto">
-            <button id="adicionarHorarioBtn" class="btn btn-primary">Adicionar Horário</button>
-        </div>
-    </div>
-
-    <!-- Lista de Horários -->
-    <div id="listaHorarios" class="mb-3"></div>
-
-    <hr class="border-light">
-
-    <!-- Registrar Tour -->
-    <div class="mb-3 row g-2 align-items-center">
-        <div class="col-auto">
-            <select id="tipoTourRegistrar" class="form-select">
-                <option value="forest">🌲 Forest Tour</option>
-                <option value="bless">🙏 Bless Tour</option>
-            </select>
-        </div>
-        <div class="col-auto">
-            <input type="number" id="teraGanho" class="form-control" placeholder="Tera ganho">
-        </div>
-        <div class="col-auto">
-            <input type="text" id="detalhesTour" class="form-control" placeholder="Detalhes (opcional)">
-        </div>
-        <div class="col-auto">
-            <input type="number" id="sealsTour" class="form-control" placeholder="Seals">
-        </div>
-        <div class="col-auto">
-            <button id="registrarTourBtn" class="btn btn-success">Registrar Tour</button>
-        </div>
-    </div>
-
-    <!-- Próximos Tours -->
-    <div class="mb-3">
-        <h6>Próximos Tours:</h6>
-        <div id="proximosTours" class="mb-2"></div>
-    </div>
-
-    <!-- Histórico de Tours -->
-    <div class="mb-3">
-        <h6>Histórico de Tours:</h6>
-        <div id="historicoTours"></div>
-    </div>
-</div>
-
-<!-- Configurações Backup -->
-<div id="settings" class="tab-content d-none">
-    <h3>⚙️ Gestão de Dados</h3>
-    <div class="card bg-secondary text-light mt-3">
-        <div class="card-body">
-            <h5 class="card-title">💾 Backup e Restauro</h5>
-            <p>Guarda o teu progresso no PC ou restaura um backup anterior.</p>
-            
-            <div class="d-flex gap-2">
-                <button id="btnExportar" class="btn btn-outline-info">
-                    ⬇️ Exportar Dados (JSON)
-                </button>
-                
-                <button id="btnImportar" class="btn btn-outline-warning">
-                    ⬆️ Importar Backup
-                </button>
-                <input type="file" id="inputFileImportar" accept=".json" style="display: none;">
+        <div id="dungeons" class="tab-content d-none">
+            <h3>🐉 Dungeon Tracker</h3>
+            <div class="row g-3 mb-4">
+                <div class="col-6">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body text-center p-2">
+                            <small class="text-muted">Runs Totais</small>
+                            <h4 id="statTotalRuns" class="text-light m-0">0</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card bg-dark border-secondary">
+                        <div class="card-body text-center p-2">
+                            <small class="text-muted">Lucro Total</small>
+                            <h4 id="statTotalDungeonProfit" class="text-success m-0">0T 0M 0B</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <hr>
-            <div class="alert alert-dark border-info">
-                <small>ℹ️ <strong>Nota:</strong> Os dados são guardados localmente no teu navegador. Se limpares o cache, perdes os dados a não ser que tenhas um backup.</small>
+
+            <div class="card bg-secondary text-light mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">📝 Registar Run</h5>
+                    <div class="row g-2">
+                        <div class="col-md-3">
+                            <label class="small text-muted">Dungeon</label>
+                            <select id="selectDungeon" class="form-select bg-dark text-light border-secondary">
+                                <option value="FDG">🔥 FDG (Fanglomon Beasts)</option>
+                                <option value="ZDG">🐦 ZDG (Zhuqia)</option>
+                                <option value="EDG">🐢 EDG (Xuan)</option>
+                                <option value="BDG">🐯 BDG (Baihu)</option>
+                                <option value="QDG">🐉 QDG (Qinglong)</option>
+                                <option value="RB">👑 RB (Royal Base)</option>
+                                <option value="Colo">🏟️ Colosseum</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="small text-muted">Party</label>
+                            <select id="selectParty" class="form-select bg-dark text-light border-secondary">
+                                <option value="4">4 Ppl</option>
+                                <option value="3">3 Ppl</option>
+                                <option value="2">Duo</option>
+                                <option value="1">Solo</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small text-muted">Drops Principais</label>
+                            <input type="text" id="inputDrops" class="form-control bg-dark text-light border-secondary" placeholder="Ex: 2x Ace, 1x Earring">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="small text-muted">Teu Lucro (em Tera)</label>
+                            <div class="input-group">
+                                <input type="number" id="inputLucro" class="form-control bg-dark text-light border-secondary" step="0.1" placeholder="Ex: 1.5">
+                                <span class="input-group-text bg-dark text-light border-secondary">T</span>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button id="btnRegistarDungeon" class="btn btn-info w-100 fw-bold">💾 Registar Run</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="mb-3">📜 Histórico Recente</h5>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover table-sm">
+                    <thead>
+                        <tr class="text-secondary">
+                            <th>Data</th>
+                            <th>DG</th>
+                            <th>Drops</th>
+                            <th>Party</th>
+                            <th>Lucro</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaDungeonsBody">
+                        </tbody>
+                </table>
             </div>
         </div>
-    </div>
-</div>
 
+        <div id="tours" class="tab-content d-none">
+            <h3>🏹 Sistema de Tours</h3>
+            <div class="mb-3 row g-2 align-items-center">
+                <div class="col-auto">
+                    <select id="tipoTour" class="form-select">
+                        <option value="forest">🌲 Forest Tour</option>
+                        <option value="bless">🙏 Bless Tour</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <input type="time" id="horarioTour" class="form-control">
+                </div>
+                <div class="col-auto">
+                    <button id="adicionarHorarioBtn" class="btn btn-primary">Adicionar Horário</button>
+                </div>
+            </div>
+            <div id="listaHorarios" class="mb-3"></div>
+            <hr class="border-light">
+            <div class="mb-3 row g-2 align-items-center">
+                <div class="col-auto">
+                    <select id="tipoTourRegistrar" class="form-select">
+                        <option value="forest">🌲 Forest Tour</option>
+                        <option value="bless">🙏 Bless Tour</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <input type="number" id="teraGanho" class="form-control" placeholder="Tera ganho">
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="detalhesTour" class="form-control" placeholder="Detalhes (opcional)">
+                </div>
+                <div class="col-auto">
+                    <input type="number" id="sealsTour" class="form-control" placeholder="Seals">
+                </div>
+                <div class="col-auto">
+                    <button id="registrarTourBtn" class="btn btn-success">Registrar Tour</button>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h6>Próximos Tours:</h6>
+                <div id="proximosTours" class="mb-2"></div>
+            </div>
+            <div class="mb-3">
+                <h6>Histórico de Tours:</h6>
+                <div id="historicoTours"></div>
+            </div>
+        </div>
+
+        <div id="settings" class="tab-content d-none">
+            <h3>⚙️ Gestão de Dados</h3>
+            <div class="card bg-secondary text-light mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">💾 Backup e Restauro</h5>
+                    <p>Guarda o teu progresso no PC ou restaura um backup anterior.</p>
+                    <div class="d-flex gap-2">
+                        <button id="btnExportar" class="btn btn-outline-info">⬇️ Exportar Dados (JSON)</button>
+                        <button id="btnImportar" class="btn btn-outline-warning">⬆️ Importar Backup</button>
+                        <input type="file" id="inputFileImportar" accept=".json" style="display: none;">
+                    </div>
+                    <hr>
+                    <div class="alert alert-dark border-info">
+                        <small>ℹ️ <strong>Nota:</strong> Os dados são guardados localmente no teu navegador. Se limpares o cache, perdes os dados a não ser que tenhas um backup.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <div id="toast-container" class="toast-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="js/app.js"></script>
+    
     <script>
-        // Definir dashboard como aba inicial
+        // Esta função agora existe sempre, mesmo que o resto do JS falhe
+        window.switchToTab = function(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('d-none'));
+            const tab = document.getElementById(tabName);
+            if(tab) {
+                tab.classList.remove('d-none');
+                console.log(`Aba alterada para: ${tabName}`);
+            } else {
+                console.error(`Aba "${tabName}" não encontrada!`);
+            }
+        };
+
         document.addEventListener("DOMContentLoaded", () => {
             switchToTab('dashboard');
         });
     </script>
+
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

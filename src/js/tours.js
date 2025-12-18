@@ -1,3 +1,5 @@
+import { showToast } from './utils.js';
+
 export class ToursManager {
     constructor() {
         // Carrega configurações ou inicia defaults
@@ -18,7 +20,7 @@ export class ToursManager {
     }
 
     adicionarHorario(tipo, horarioStr) {
-        if (!horarioStr) return alert("Escolha um horário!");
+        if (!horarioStr) return showToast("Escolha um horário válido!", "error"); // <--- MUDANÇA
         
         // Guardamos apenas a string "HH:MM", a lógica de data é feita na exibição
         this.config.horarios.push({ 
@@ -30,6 +32,7 @@ export class ToursManager {
         this.config.horarios.sort((a, b) => a.horario.localeCompare(b.horario)); // Ordenar por hora
         this.salvar();
         this.atualizarProximosTours();
+        showToast("Horário adicionado!", "success"); // <--- MUDANÇA (Feedback positivo)
     }
 
     removerHorario(id) {
@@ -54,7 +57,7 @@ export class ToursManager {
         
         this.salvar();
         this.atualizarHistoricoTours();
-        alert("Tour registado no histórico!");
+        showToast("Tour registado no histórico!", "success"); // <--- MUDANÇA
     }
 
     // --- Lógica de Visualização ---
