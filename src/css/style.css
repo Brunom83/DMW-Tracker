@@ -1,278 +1,294 @@
-/* === Geral === */
+/* =========================================
+   1. CORE & RESET (O Chassis)
+   ========================================= */
+:root {
+    --primary-color: #0ff;          /* Azul Neon Teku */
+    --bg-dark: #1a1a1a;             /* Fundo Principal */
+    --bg-sidebar: #111;             /* Fundo Sidebar */
+    --bg-card: #1e1e1e;             /* Fundo Cards */
+    --glass-bg: rgba(30, 30, 30, 0.7); /* Efeito Vidro */
+    --sidebar-width: 260px;         /* Largura Fixa da Sidebar */
+    --navbar-height: 70px;          /* Altura da Navbar */
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #1a1a1a;
-  color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-  transition: background 0.3s;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita scroll lateral indesejado */
 }
 
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: #0ff #111;
+/* Scrollbar Personalizada (Racing Style) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #0a0a0a;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 10px;
-}
+/* =========================================
+   2. LAYOUT & ESTRUTURA (A Aerodinâmica)
+   ========================================= */
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #111;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #0ff;
-  border-radius: 5px;
-}
-
-/* === Navbar === */
+/* Navbar Fixa no Topo */
 .custom-navbar {
-  background-color: #121212;
-  box-shadow: 0 0 15px rgba(0,255,255,0.2);
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 255, 255, 0.1);
+    height: var(--navbar-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Fica acima de tudo */
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
 }
 
 .brand-logo {
-  font-weight: 700;
-  color: #0ff;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.nav-link {
-  color: #ccc;
-  transition: all 0.2s;
-}
-
-.nav-link:hover {
-  color: #0ff;
-  text-shadow: 0 0 8px #0ff;
-}
-
-/* === Sidebar === */
+/* Sidebar Fixa à Esquerda */
 .sidebar {
-  background-color: #111;
-  padding-top: 80px;
-  min-height: 100vh;
-  box-shadow: 2px 0 15px rgba(0,255,255,0.1);
+    width: var(--sidebar-width);
+    background-color: var(--bg-sidebar);
+    position: fixed;
+    top: 0; /* Começa do topo */
+    left: 0;
+    height: 100vh; /* Altura total */
+    padding-top: calc(var(--navbar-height) + 20px); /* Espaço para não bater na navbar */
+    z-index: 900; /* Fica abaixo da navbar */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+    border-right: 1px solid rgba(0, 255, 255, 0.05);
+    transition: transform 0.3s ease-in-out;
 }
 
+/* Conteúdo Principal (O Motor) */
+.main-container {
+    margin-left: var(--sidebar-width); /* Empurra o conteúdo para a direita */
+    margin-top: var(--navbar-height);  /* Empurra o conteúdo para baixo */
+    padding: 30px;
+    width: calc(100% - var(--sidebar-width)); /* Calcula a largura restante */
+    min-height: 100vh;
+    transition: all 0.3s ease-in-out;
+}
+
+/* =========================================
+   3. COMPONENTES VISUAIS (O Tuning)
+   ========================================= */
+
+/* Links da Sidebar */
 .sidebar-item {
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  color: #aaa;
-  text-decoration: none;
-  margin-bottom: 4px;
-  border-radius: 8px;
-  transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #888;
+    text-decoration: none;
+    margin: 5px 10px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-weight: 500;
 }
 
 .sidebar-item i {
-  margin-right: 10px;
+    width: 25px; /* Alinha os ícones */
+    margin-right: 10px;
+    font-size: 1.1rem;
 }
 
-.sidebar-item:hover {
-  background-color: rgba(0,255,255,0.1);
-  color: #0ff;
-  box-shadow: 0 0 10px #0ff;
+.sidebar-item:hover, .sidebar-item.active {
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    transform: translateX(5px); /* Efeito de movimento */
 }
 
-/* === Cards === */
+/* Cards (Glassmorphism) */
 .card {
-  background-color: #1e1e1e;
-  border: none;
-  border-radius: 15px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 0 15px rgba(0,255,255,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px); /* O truque do vidro fosco */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 0; /* Padding controlado pelo card-body */
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(0,255,255,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15);
+    border-color: rgba(0, 255, 255, 0.2);
 }
 
+.card-header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    color: #fff;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Stat Cards (Pequenos widgets) */
 .stat-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 12px;
-  background: #111;
-  box-shadow: 0 0 10px rgba(0,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #1e1e1e, #161616);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.stat-card .stat-icon {
-  font-size: 2rem;
-  color: #0ff;
+.stat-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    opacity: 0.8;
 }
 
-.stat-card .stat-info h3 {
-  margin: 0;
+.stat-info h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
 }
 
-.stat-card .stat-trend.up i {
-  color: #0f0;
+.stat-info p {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
 }
 
-.stat-card .stat-trend.down i {
-  color: #f00;
+/* =========================================
+   4. INPUTS & FORMULÁRIOS (O Painel de Controlo)
+   ========================================= */
+.form-control, .form-select {
+    background-color: #0f0f0f;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
 }
 
-/* === Dashboard e Main === */
-.main-container {
-  margin-top: 70px;
-  padding: 20px;
+.form-control:focus, .form-select:focus {
+    background-color: #0f0f0f;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 255, 0.25);
+    color: #fff;
 }
 
-.dashboard-header h1 {
-  font-size: 1.8rem;
-  color: #0ff;
-}
-
-.dashboard-header p {
-  color: #888;
-}
-
-/* === Inputs === */
-.input-group-custom {
-  margin-bottom: 20px;
-}
-
-.money-inputs {
-  display: flex;
-  gap: 10px;
-}
-
-.money-field {
-  position: relative;
-  flex: 1;
-}
-
-.money-field i {
-  position: absolute;
-  top: 50%;
-  left: 8px;
-  transform: translateY(-50%);
-  color: #0ff;
-}
-
-.money-field input {
-  padding-left: 28px;
-  background-color: #222;
-  border: 1px solid #0ff;
-  border-radius: 8px;
-  color: #fff;
-}
-
-/* === Buttons === */
 .btn-primary {
-  background-color: #0ff;
-  border: none;
-  color: #111;
-  font-weight: 600;
-  transition: all 0.2s;
+    background: linear-gradient(45deg, #008b8b, var(--primary-color));
+    border: none;
+    color: #000;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
 }
 
 .btn-primary:hover {
-  background-color: #00ffffcc;
-  box-shadow: 0 0 15px #0ff;
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    transform: scale(1.02);
 }
 
-/* === Footer === */
-.custom-footer {
-  background-color: #121212;
-  padding: 15px 0;
-  color: #888;
-  border-top: 1px solid #0ff1;
+/* =========================================
+   5. GRÁFICOS & CONTEÚDO ESPECÍFICO
+   ========================================= */
+
+/* CORREÇÃO DO TIJOLO VERDE */
+/* Importante: Envolve o teu <canvas> numa div com esta classe */
+.chart-container {
+    position: relative;
+    height: 300px; /* Define altura fixa */
+    width: 100%;   /* Largura total do pai */
 }
 
-/* === Tabelas e Listas === */
-.eggs-list, .tours-list, .activity-feed {
-  min-height: 80px;
+.money-inputs {
+    display: flex;
+    gap: 15px;
 }
 
-.empty-state {
-  text-align: center;
-  color: #555;
+.input-group-text {
+    background-color: #222;
+    border-color: #333;
+    color: var(--primary-color);
 }
 
-.empty-state i {
-  font-size: 2rem;
-  color: #0ff;
+/* =========================================
+   6. RESPONSIVIDADE (Mobile Mode)
+   ========================================= */
+@media (max-width: 992px) {
+    /* Esconde Sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 0;
+        padding: 0;
+    }
+
+    /* Conteúdo ocupa tudo */
+    .main-container {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* Mostra menu hamburger se tiveres lógica de toggle */
+    /* (Se quiseres abrir a sidebar no telemóvel, precisas de JS extra) */
+    .sidebar.active {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
 }
 
-/* === Responsivo === */
-@media(max-width: 992px){
-  .sidebar { display: none; }
-}
-
-/* === Toast Notifications (Senior UI) === */
+/* =========================================
+   7. TOASTS (Notificações)
+   ========================================= */
 .toast-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    pointer-events: none; /* Deixa clicar no site por trás */
 }
 
 .custom-toast {
-    background: rgba(20, 20, 20, 0.95);
-    border-left: 4px solid #0ff; /* Cor padrão (Info) */
+    background: rgba(18, 18, 18, 0.95);
+    border-left: 4px solid var(--primary-color);
     color: #fff;
-    padding: 15px 20px;
+    padding: 15px 25px;
+    margin-top: 10px;
     border-radius: 4px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    min-width: 300px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
-    font-weight: 500;
-    font-size: 0.95rem;
-    animation: slideInRight 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    pointer-events: auto;
+    backdrop-filter: blur(5px);
+    animation: slideIn 0.3s ease forwards;
 }
 
-/* Tipos de Notificação */
-.custom-toast.success { border-left-color: #00C851; } /* Verde */
-.custom-toast.error { border-left-color: #ff4444; }   /* Vermelho */
-.custom-toast.warning { border-left-color: #ffbb33; } /* Amarelo */
-
-/* Ícone dentro do toast */
-.toast-icon {
-    margin-right: 12px;
-    font-size: 1.2rem;
-}
-
-/* Animação de Saída */
-.custom-toast.hide {
-    animation: slideOutRight 0.4s ease forwards;
-}
-
-@keyframes slideInRight {
-    from { transform: translateX(120%); opacity: 0; }
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideOutRight {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(120%); opacity: 0; }
-}
-
-/* === Validação e Erros === */
-.form-control.is-invalid, 
-.form-select.is-invalid {
-    border-color: #ff4444 !important;
-    background-image: none; /* Remove ícone padrão do bootstrap */
-    box-shadow: 0 0 5px rgba(255, 68, 68, 0.5);
-    animation: shake 0.3s ease-in-out;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
 }
