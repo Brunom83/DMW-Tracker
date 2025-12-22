@@ -36,14 +36,18 @@ export class ChartsManager {
         if (ctxHistory) {
             this.historyChart = new Chart(ctxHistory, {
                 type: 'bar',
-                data: {
-                    labels: [], // Dias
-                    datasets: [{
-                        label: 'Lucro (Teras)',
-                        data: [],
-                        backgroundColor: '#00C851',
-                        borderRadius: 4
-                    }]
+                    data: {
+            labels: [],
+            datasets: [{
+                label: 'Lucro (Teras)',
+                data: [],
+                backgroundColor: '#00C851',
+                borderRadius: 4,
+            // --- ADICIONA ESTAS DUAS LINHAS AQUI ---
+                barPercentage: 0.5,     // A barra ocupa só 50% do espaço da categoria
+                maxBarThickness: 50,    // Nunca fica mais grossa que 50px
+            // ---------------------------------------
+        }]
                 },
                 options: {
                     responsive: true,

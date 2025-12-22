@@ -58,3 +58,13 @@
     box-shadow: 0 0 12px #0ff;
     transform: translateY(-2px);
 }
+
+/* Brilho pulsante para o Diamante */
+.fa-gem {
+    animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { text-shadow: 0 0 10px rgba(0, 255, 255, 0.2); transform: scale(1); }
+    to { text-shadow: 0 0 25px rgba(0, 255, 255, 0.6); transform: scale(1.1); }
+}

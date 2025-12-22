@@ -129,6 +129,33 @@ class DMWTracker {
             // --- GRÁFICOS ---
             this.charts.atualizar(this.eggs, this.tours, this.dungeons);
 
+            // --- CÓDIGO NOVO: CÁLCULO DO PATRIMÓNIO (NET WORTH) ---
+        
+        // 1. Total dos Eggs (está em Bits, convertemos para Tera)
+        // Nota: this.eggs.eggs é o array de ovos dentro da classe Eggs
+            const eggsTera = this.eggs.eggs.reduce((acc, e) => acc + e.total, 0) / 1000000;
+
+        // 2. Total das Dungeons (está em Bits, convertemos para Tera)
+            const dungeonsTera = this.dungeons.runs.reduce((acc, r) => acc + r.lucro, 0) / 1000000;
+
+        // 3. Total dos Tours (já está em Tera no histórico)
+            const toursTera = this.tours.config.historico.reduce((acc, t) => acc + t.tera, 0);
+
+        // 4. Moedas Atuais (O valor "Depois" da aba Moedas, se tiver algo lá)
+        // Vamos tentar ler o input "depoisTera" se ele existir, senão assumimos 0
+            const inputTera = parseFloat(document.getElementById('depoisTera')?.value) || 0;
+        // (Simplificando: vamos somar apenas os Teras "na mão" para o Net Worth não ficar maluco com M/B)
+
+        // 5. Soma Tudo
+            const totalGeral = eggsTera + dungeonsTera + toursTera + inputTera;
+
+        // 6. Atualiza o HTML
+            const elNetWorth = document.getElementById('totalNetWorth');
+            if (elNetWorth) {
+                // Formata para ficar bonito (ex: 15.4T)
+                elNetWorth.innerText = `${totalGeral.toLocaleString('pt-PT', { maximumFractionDigits: 1 })}T`;
+            }
+
         } catch (error) {
             console.error("❌ Erro ao atualizar dashboard:", error);
         }
