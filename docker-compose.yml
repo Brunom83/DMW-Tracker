@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: dmw_tracker_app
     restart: unless-stopped
-    deploy:  # <--- ADICIONA ISTO
+    deploy: 
       resources:
         limits:
           memory: 512M  # Limita o MySQL a 512MB
@@ -14,7 +14,7 @@ services:
     volumes:
       # Mapeia a tua pasta atual para dentro do Nginx.
       # Isto permite que edites no VS Code e vejas as alterações logo no browser (F5)
-      - ./src:/usr/share/nginx/html
+      - ./:/usr/share/nginx/html
     networks:
       - dmw_net
 

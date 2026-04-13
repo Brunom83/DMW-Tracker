@@ -2,19 +2,24 @@
    1. CORE & RESET (O Chassis)
    ========================================= */
 :root {
-    --primary-color: #00e5ff;       /* Azul Neon Teku - Mais brilhante */
-    --secondary-color: #ffaa00;     /* Laranja Teku para destaques */
-    --bg-dark: #121212;             /* Fundo Principal - Ligeiramente mais escuro para contraste */
-    --bg-sidebar: #1a1a1a;          /* Fundo Sidebar */
-    --bg-card: rgba(30, 30, 30, 0.85); /* Fundo Cards com mais opacidade para ler melhor o texto */
-    --sidebar-width: 260px;         /* Largura Fixa da Sidebar */
-    --navbar-height: 70px;          /* Altura da Navbar */
+    /* Cores Neutras Profissionais */
+    --bg-dark: #0f172a;           
+    --card-bg: #1e293b;           
+    --sidebar-bg: #111827;        
+    --primary-color: #3b82f6;     
+    --accent-color: #94a3b8;      
+    --text-main: #f8fafc;         
+    --border-color: #334155;      
+    
+    /* AS MEDIDAS QUE FALTAVAM (Crucial para o layout não partir) */
+    --navbar-height: 70px;
+    --sidebar-width: 250px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-dark);
-    color: #e0e0e0; /* Texto principal mais claro em vez de branco puro que cansa os olhos */
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg-dark) !important;
+    color: var(--text-main) !important;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -53,20 +58,20 @@ body {
     color: var(--primary-color) !important;
     letter-spacing: 2px;
     text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); /* Efeito Neon no Logo */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.4); 
 }
 
 /* Sidebar Fixa à Esquerda */
 .sidebar {
     width: var(--sidebar-width);
-    background-color: var(--bg-sidebar);
+    background-color: var(--sidebar-bg);
     position: fixed;
     top: 0; left: 0;
     height: 100vh;
     padding-top: calc(var(--navbar-height) + 20px);
     z-index: 900;
     box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid var(--border-color);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -88,11 +93,11 @@ body {
     display: flex;
     align-items: center;
     padding: 14px 20px;
-    color: #a0a0a0; /* Mais claro para se ver melhor */
+    color: var(--accent-color);
     text-decoration: none;
     margin: 8px 15px;
     border-radius: 10px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -105,18 +110,18 @@ body {
 }
 
 .sidebar-item:hover, .sidebar-item.active {
-    background: linear-gradient(90deg, rgba(0, 229, 255, 0.15) 0%, rgba(0, 229, 255, 0) 100%);
+    background: rgba(59, 130, 246, 0.1) 100%;
     color: var(--primary-color) !important;
-    border-left: 4px solid var(--primary-color);
+    border-left: 3px solid var(--primary-color);
     transform: translateX(5px);
 }
 
-/* Cards (Glassmorphism Aprimorado) */
+/* Cards (Corrigido o nome da variável da cor de fundo) */
 .card {
-    background: var(--bg-card) !important;
+    background: var(--card-bg) !important;
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px;
     margin-bottom: 25px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -140,15 +145,16 @@ body {
 
 .card-body { padding: 25px; }
 
-/* Stat Cards (Pequenos widgets) */
+/* Stat Cards */
 .stat-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
     border-radius: 12px;
-    background: linear-gradient(145deg, #222, #181818);
+    background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 3px solid var(--primary-color);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
