@@ -1,0 +1,142 @@
+{
+  "skill": {
+    "1": {
+      "tier_name": "Early Game (Zhuqiaomon)",
+      "ring": "Flame Ring of Sealed Zhuqiaomon",
+      "neck": "Flame Necklace of Sealed Zhuqiaomon",
+      "earring": "Flame Earring of Sealed Zhuqiaomon",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_neck": "Skill / Max HP / B. Att / B. Att o Skill / Critical Damage / B. Attribute / B. Attribute",
+      "stats_earring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_brace": "Skill / Skill / Max HP / Max HP / Max DS o Skill / Skill / Max HP / Max HP / Critical Damage"
+    },
+    "2": {
+      "tier_name": "Mid Game (Holy Beasts Lv 5)",
+      "ring": "Sealed Radiant Ring of Four Holy Beasts [Lv. 5] [SK]",
+      "neck": "Sealed Radiant Necklace of Four Holy Beasts [Lv. 5] [SK]",
+      "earring": "Sealed Radiant Earring of Four Holy Beasts [Lv. 5] [SK]",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_neck": "Skill / Max HP / B. Att / B. Att o Skill / Critical Damage / B. Attribute / B. Attribute",
+      "stats_earring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_brace": "Skill / Skill / Max HP / Max HP / Max DS o Skill / Skill / Max HP / Max HP / Critical Damage"
+    },
+    "3": {
+      "tier_name": "Late Game (Fanglongmon Ancient Ultimate)",
+      "ring": "Fanglongmon's Ancient Ring Ultimate [SK]",
+      "neck": "Fanglongmon's Ancient Necklace Ultimate [SK]",
+      "earring": "Fanglongmon's Ancient Earring Ultimate [SK]",
+      "brace": ["Royal : X-Knight's Bracelet", "Royal : Yggdrasil Bracelet"],
+      "stats_ring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_neck": "Skill / Max HP / B. Att / B. Att o Skill / Crit. Damage / B. Attribute / B. Attribute",
+      "stats_earring": "Skill / Skill / B. Attribute / B. Attribute",
+      "stats_brace": "Skill / Skill / Max HP / Max HP / Max DS o Skill / Skill / Max HP / Max HP / Crit. Damage"
+    },
+    "4": {
+      "tier_name": "End Game (Marine/Puppet/Metallic/Cruel Clown)",
+      "ring": "Ring of the Marine Dragon [SK]",
+      "neck": "Necklace of the Wooden Puppet [SK]",
+      "earring": "Earring of the Metalic Beast [SK]",
+      "brace": "Bracelet of the Cruel Clown [SK]",
+      "stats_ring": "Skill / Skill % / Skill % / B. Attribute / B. Attribute",
+      "stats_neck": "Skill % / Skill % / B. Attribute / B. Attribute / X",
+      "stats_earring": "Skill / Skill / B. Attribute / B. Attribute / Max DS",
+      "stats_brace": "Skill % / Skill % / Max HP / Max HP / SK Flat"
+    }
+  },
+
+  "aa": {
+    "1": {
+      "tier_name": "Early Game (Qinglongmon)",
+      "ring": "Qinglongmon's Sealed Radiant Ring",
+      "neck": "Qinglongmon's Sealed Radiant Necklace",
+      "earring": "Qinglongmon's Sealed Radiant Earring",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Attack / Attack / B. Attribute / B. Attribute",
+      "stats_neck": "Atk Spd / Crit. Damage / B. Att / B. Att o Atk Spd / Crit. Damage / Attack / B. Att",
+      "stats_earring": "Crit. Damage / Crit. Damage / B. Att / B. Att o Crit. Damage / Crit. Damage / B. Att / Hit Rate",
+      "stats_brace": "Attack / Crit. Damage / Crit. Damage / Hit Rate / Hit Rate"
+    },
+    "2": {
+      "tier_name": "Mid Game (Holy Beasts Lv 5)",
+     "ring": "Sealed Radiant Ring of Four Holy Beasts [Lv. 5] [AA]",
+      "neck": "Sealed Radiant Necklace of Four Holy Beasts [Lv. 5] [AA]",
+      "earring": "Sealed Radiant Earring of Four Holy Beasts [Lv. 5] [AA]",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Attack / Attack / B. Attribute / B. Attribute",
+      "stats_neck": "Atk Spd / Crit. Damage / B. Att / B. Att o Atk Spd / Crit. Damage / Attack / B. Att",
+      "stats_earring": "Crit. Damage / Crit. Damage / B. Att / B. Att o Crit. Damage / Crit. Damage / B. Att / Hit Rate",
+      "stats_brace": "Attack / Crit. Damage / Crit. Damage / Hit Rate / Hit Rate"
+    },
+    "3": {
+      "tier_name": "Late Game (Fanglongmon Ancient Ultimate)",
+      "ring": "Fanglongmon's Ancient Ring Ultimate [AA]",
+      "neck": "Fanglongmon's Ancient Necklace Ultimate [AA]",
+      "earring": "Fanglongmon's Ancient Earring Ultimate [AA]",
+      "brace": ["Royal : X-Knight's Bracelet", "Royal : Yggdrasil Bracelet"],
+      "stats_ring": "Attack / Attack / B. Attribute / B. Attribute",
+      "stats_neck": "Atk Spd / Crit. Damage / B. Att / B. Att o Atk Spd / Crit. Damage / Attack / B. Att",
+      "stats_earring": "Crit. Damage / Crit. Damage / B. Att / B. Att o Crit. Damage / Crit. Damage / B. Att / Hit Rate",
+      "stats_brace": "Attack / Crit. Damage / Crit. Damage / Hit Rate / Hit Rate"
+  },
+  "4": {
+      "tier_name": "End Game (Marine/Puppet/Metallic/Cruel Clown)",
+      "ring": "Ring of the Marine Dragon [AA]",
+      "neck": "Necklace of the Wooden Puppet [AA]",
+      "earring": "Earring of the Metalic Beast [AA]",
+      "brace": "Bracelet of the Cruel Clown [AA]",
+      "stats_ring": "Attack / Attack  / Crit. Damage / B. Attribute / B. Attribute o Attack / Crit. Damage  / Crit. Damage / B. Attribute / B. Attribute",
+      "stats_neck": "Atk Spd / Attack / B. Attribute / B. Attribute / X",
+      "stats_earring": "Crit. Damage / Attack / B. Attribute / B. Attribute / Max HP o Crit. Damage / Attack / B. Attribute / B. Attribute / Hit Rate",
+      "stats_brace": "Attack / Crit. Damage / Max HP / Max HP / Hit Rate"
+    }
+  },
+
+  "tank": {
+    "1": {
+      "tier_name": "Early Game (Xuanwumon Mix)",
+      "ring": "Xuanwumon Sealed Shiny Ring",
+      "neck": "Xuanwumon Sealed Shiny Necklace",
+      "earring": "Qinglongmon's Sealed Radiant Earring",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Max HP / Max HP / Defense / Defense o Max HP / Max HP / Max HP / Defense",
+      "stats_neck": "Max HP / Max HP / Max HP / Atk Spd o Max HP / Max HP / Atk Spd / Crit. Damage",
+      "stats_earring": "Max HP / Max HP / Max HP / Defense",
+      "stats_brace": "Max HP / Max HP / Evasion / Defense / Defense"
+    },
+    "2": {
+      "tier_name": "Mid Game (Holy Beasts Lv 5)",
+     "ring": "Sealed Radiant Ring of Four Holy Beasts [Lv. 5] [TA]",
+      "neck": "Sealed Radiant Necklace of Four Holy Beasts [Lv. 5] [TA]",
+      "earring": "Sealed Radiant Earring of Four Holy Beasts [Lv. 5] [TA]",
+      "brace": "Royal : X-Knight's Bracelet",
+      "stats_ring": "Max HP / Max HP / Defense / Defense o Max HP / Max HP / Max HP / Defense",
+      "stats_neck": "Max HP / Max HP / Max HP / Atk Spd o Max HP / Max HP / Atk Spd / Crit. Damage",
+      "stats_earring": "Max HP / Max HP / Max HP / Defense",
+      "stats_brace": "Max HP / Max HP / Evasion / Defense / Defense"
+    },
+    "3": {
+      "tier_name": "Late Game (Fanglongmon Ancient Ultimate)",
+      "ring": "Fanglongmon's Ancient Ring Ultimate [TA]",
+      "neck": "Fanglongmon's Ancient Necklace Ultimate [TA]",
+      "earring": "Fanglongmon's Ancient Earring Ultimate [TA]",
+      "brace": "Royal : Yggdrasil Bracelet",
+      "stats_ring": "Max HP / Max HP / Defense / Defense o Max HP / Max HP / Max HP / Defense",
+      "stats_neck": "Max HP / Max HP / Max HP / Atk Spd o Max HP / Max HP / Atk Spd / Crit. Damage",
+      "stats_earring": "Max HP / Max HP / Max HP / Defense",
+      "stats_brace": "Max HP / Max HP / Evasion / Defense / Block"
+  },
+  "4": {
+      "tier_name": "End Game (Marine/Puppet/Metallic/Cruel Clown)",
+      "ring": "Ring of the Marine Dragon [TA]",
+      "neck": "Necklace of the Wooden Puppet [TA]",
+      "earring": "Earring of the Metalic Beast [TA]",
+      "brace": "Bracelet of the Cruel Clown [TA]",
+      "stats_ring": "Max HP / Max HP / Defense / Defense % / Defense % o Max HP / Max HP / Evasion / Defense % / Defense %",
+      "stats_neck": "HP % / HP % / Defense /Defense % / Defense % o HP % / HP % / Evasion /Defense % / Defense %",
+      "stats_earring": "HP % / HP % / Evasion / Block / Defense % o HP % / HP % / Block /Defense % / Defense %",
+      "stats_brace": "HP % / HP % / Evasion / Defense % / Block o HP % / HP % / Defense % / Block / Defense %"
+    }
+  }
+}

@@ -1,0 +1,381 @@
+[
+  {
+    "id": "VVH",
+    "nome": "Venom Vortex Hard Dungeon",
+    "roles": {
+      "skill": {
+        "recomendados": ["Omegamon X", "Susanomon Shin", "Alphamon Ouryuken Awaken"],
+        "hp_minimo": 80000,
+        "hit_minimo": 0,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Ouroboros o superior"
+      },
+      "aa": {
+        "recomendados": ["BloomLordmon", "Agumon Kizuna"],
+        "hp_minimo": 80000,
+        "hit_minimo": 13000,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["IcyMagnamon", "Metal Seadramon Shin", "SaintGargomon Shin", "Wargreymon Shin"],
+        "hp_minimo": 120000,
+        "de_minimo": 25000,
+        "bl_minimo": 130,
+        "ev_minimo": 190,
+        "gear_nivel": 2,
+        "gear": "Set Holy Radiant Perfect, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Brick Wall o superior"
+      }
+    },
+    "mecanicas": [
+      "⚠️ Inicio: 3 DPS deben hacer stack. Separarse a los 48-45%.",
+      "⏩ Skip F3: Usar a los 89-87% y a los 29%.",
+      "🔴 Círculos Rojos (Stack): A los 70%, todos juntos (daño 75k).",
+      "☁️ Skill Invisible: Venom sube, cielo naranja. (No se puede esquivar).",
+      "🔵 Círculos Azules (Split): A los 40% y 15-12%.",
+      "🛡️ Tank Check: Al 10%, matar lo más rápido posible."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE. Tamer Skills: Encouragement y/o Guardian."
+  },
+  {
+    "id": "RBH",
+    "nome": "Royal Base Hard (Sala 1 & 2)",
+    "roles": {
+      "skill": {
+        "recomendados": ["Dukemon Shin", "Megidramon X", "Demon X", "Ulforce Future", "Sakuya Shin"],
+        "hp_minimo": 75000,
+        "ct_minimo": 250,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Celestfracture (Celes) o superior"
+      },
+      "aa": {
+        "recomendados": ["Lilitmon X", "Jetmervamon", "Lordknightmon X", "Ulforce Future", "Sakuya Shin", "Orochimon"],
+        "hp_minimo": 75000,
+        "hit_minimo": 11500,
+        "ct_minimo": 250,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining). (⚠️ NOTA: Si vas para el Piso 2 necesitas de 80k HP, 265% CT y 13k HIT)",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["Barbamon X", "Amphimon", "Gargomon Shin", "Metal Seadramon Shin"],
+        "hp_minimo": 150000,
+        "de_minimo": 25000,
+        "bl_minimo": 130,
+        "ev_minimo": 100,
+        "gear_nivel": 2,
+        "gear": "Set Holy Radiant Perfect, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Brick Wall o superior"
+      }
+    },
+    "mecanicas": [
+      "🔥 <b>Jesmon X (Sala 1):</b> Matar portales rápido con Quemadura/Poison. Red = Stack de 2 personas. Blue = Split.",
+      "🛡️ <b>Examon X (Sala 1):</b> 70k Daño al 65% (Skip 68%). Blue = Split. Poisons = 2 se alejan. Pets al 30% (golpear para ganar escudo).",
+      "🏃 <b>Gankoomon X (Sala 1):</b> Esquivar todo (Red = +Daño recibido, Blue = Slow).",
+      "⚠️ <b>DexDorugoramon (Sala 2):</b> Huevos a los 98%, 68%, 38% (matar rápido después de la reducción de daño). 70k Daño al 62% y 22% (Skip 65% y 25%). ¡Límite de 4 muertes en la sala!"
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "RBH_F3",
+    "nome": "Royal Base Hard (Full Clear - Sala 3)",
+    "roles": {
+      "skill": {
+        "recomendados": ["Susanomon Shin", "Alphamon Ouryuken Awaken", "Omegamon X", "Fanglongmon Shin", "Examon X"],
+        "hp_minimo": 85000,
+        "hit_minimo": 0,
+        "ct_minimo": 250,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "LP (Latent Power) o superior"
+      },
+      "aa": {
+        "recomendados": ["BloomLordmon", "Agumon Kizuna", "OMM", "Gabumon Kizuna", "Shoutmon X7", "Gankoomon X"],
+        "hp_minimo": 85000,
+        "hit_minimo": 14000,
+        "ct_minimo": 270,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining).",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["Barbamon X", "Amphimon", "Gargomon Shin", "Metal Seadramon Shin"],
+        "hp_minimo": 150000,
+        "hit_minimo": 12000,
+        "de_minimo": 30000,
+        "bl_minimo": 140,
+        "ev_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería Tank Fang Lv 10/Ultimate, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Brick Wall o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>Nota Importante:</b> Necesario 1 DPS con AOE rápido (Susa Shin/Bloom) para matar pets en la Raid 1.",
+      "😈 <b>Dexmon (Raid 1):</b> 70k Daño al 80% y 22% (Skip 85% y 30%). Al 70% invoca pets cada 15s (matar con AOE). Tank Check al 10%.",
+      "⚔️ <b>AOA (Raid 2):</b> 70k Daño al 88% y 17% (Skip 90% y 20%). Al 50% = 4 Círculos Verdes (entrar o mueres).",
+      "🔄 <b>Split/Stack 30% (Ambos):</b> Esperar en el 32%, AOE en los pets, después: Stack -> Split -> Stack."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "MDG",
+    "nome": "Marine Dragon Domain",
+    "roles": {
+      "skill": {
+        "recomendados": ["Omegamon Alter B", "Omegamon Zwart D", "Lucemon X"],
+        "hp_minimo": 85000,
+        "ct_minimo": 300,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Celestfracture (Celes) o superior"
+      },
+      "aa": {
+        "recomendados": ["Darknessbagramon", "Death-X-Mon X Awaken", "Gaioumon Itto Mode"],
+        "hp_minimo": 80000,
+        "hit_minimo": 14500,
+        "ct_minimo": 330,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Judicium Noctis o superior"
+      },
+      "tank": {
+        "recomendados": ["Barbamon X", "Rustytyranomon", "Housemon", "Metal Seadramon Shin"],
+        "hp_minimo": 150000,
+        "de_minimo": 30000,
+        "bl_minimo": 165,
+        "ev_minimo": 110,
+        "gear_nivel": 3,
+        "gear": "Set Joyería Tank Fang Lv 10/Ultimate, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Defensive Order o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>AVISO Importante:</b> DEBUFF de BLOCK (reduce 65% de BLOCK)",
+      "❗ <b>AVISO:</b> La mayoría de las partys van con PROTECT para evitar la mecánica de STACK y así se hace la dungeon más rápida.",
+      "❗ <b>AVISO:</b> Usar la skill Tamer de Henry si no tienes HP suficiente para evitar morir por OMAERA MO SHINDEIRU.",
+      "❗ <b>AVISO:</b> Intenta tener el HP Lleno ya que puede haber golpes invisibles y aleatorios que hacen bastante daño.",
+      "❗ <b>AVISO Importante:</b> Si llegan a morir 3 será invocado un Anomalocarimon, solo el tanque puede atacar, los demás eviten atacar.",
+      "❗ <b>Nota Importante:</b> La forma más rápida de hacer la dungeon es que todos lleven un PROTECT para evitar una mecánica de Stack.",
+      "⚠️ <b>OMAERA MO SHINDEIRU:</b> Se genera a los 87% y 21% y quita 80K de HP, se puede hacer skip si 2 digis SK tiran F3 a los 88-87% y a los 21%.",
+      "🏃 <b>Círculos Azules (Esquivar):</b> Se genera a partir de 70% y 50%, es muy directo, solo esquivar ya que dan debuff y aumenta el daño recibido.",
+      "🔵 <b>Círculos Azules (Split):</b> Se genera a partir de 65%, deben estar lo más separados posible para evitar acumular daño.",
+      "🔴 <b>Círculos Rojos:</b> Se genera a partir de 60% y todos deben juntarse debajo del metalseadramon para disminuir el daño recibido. Se puede hacer skip en esta mecánica con PROTECT.",
+      "🏃 <b>Círculos Verdes:</b> A los 30-29%, se generan 4 círculos en el campo y cada 1 debe colocarse en 1 círculo (1 círculo por persona), esto evita el one-shot del metalseadramon. Si no hay suficiente daño puede volver a hacer esta mecánica al 11%.",
+      "🛡️ <b>DPS CHECK:</b> Al 10% empieza el DPS CHECK y es necesario que todos ataquen con todo, en caso de no haber daño suficiente matará a todos."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "PDG",
+    "nome": "Puppet Dungeon (Front Yard Marione Mansion)",
+    "roles": {
+      "skill": {
+        "recomendados": ["Alphamon Ouryuken Awaken", "Omegamon X", "Omegamon Merciful Mode"],
+        "hp_minimo": 90000,
+        "ct_minimo": 330,
+        "gear_nivel": 3, 
+        "gear": "Set Joyería SK Fang Ultimate + Spiral Ring, Pulsera SK Perfect, Ropa SK",
+        "deck": "LP (Latent Power) o superior"
+      },
+      "aa": {
+        "recomendados": ["Darknessbagramon", "Death-X-Mon X Awaken", "Gaioumon Itto Mode"],
+        "hp_minimo": 80000,
+        "hit_minimo": 14500,
+        "ct_minimo": 330,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Ultimate + Spiral Ring, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Judicium Noctis o superior"
+      },
+      "tank": {
+        "recomendados": ["Wargreymon Shin", "IcyMagnamon"],
+        "hp_minimo": 170000,
+        "de_minimo": 40000,
+        "bl_minimo": 175,
+        "ev_minimo": 205,
+        "gear_nivel": 3,
+        "gear": "Set Joyería Tank Fang Ultimate, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Defensive Order o superior"
+      }
+    },
+    "mecanicas": [
+      "⚠️ <b>DEBUFF GLOBAL:</b> El Block (BL) se reduce en 75% durante toda la pelea en ambos bosses.",
+      "❗ <b>AVISO:</b> Usar un Enhanced Protect o 2 Protects para las 2 mecánicas.",
+      "❗ <b>AVISO:</b> Intenta tener el HP Lleno ya que puede haber golpes invisibles y aleatorios que hacen bastante daño.",
+      "🔵/🔴 <b>PUPPETMON (80%-50%):</b> Aparecen Círculos Azules (AOE) y Rojos (dan debuff de daño y root por 4s). ¡Esquivar ambos!",
+      "⚔️ <b>Defeat Housemon to activate the protection area:</b> Aparecen estas letras a los 70-68% y al aparecer debes contar 7 segundos y usar Protect o usar la estrategia de un dark chocolate y cuando el contador llegue a 3-2 segundos usar el Protect, y en la última es contar hasta 3 segundos después de que desaparezcan las letras.",
+      "🔵/🔴 <b>Stack/Split:</b> Se genera a partir del 70% después de la mecánica del Protect y este es el orden siguiente: STACK --> SPLIT --> STACK.",
+      "⚔️ <b>Defeat Housemon to activate the protection area:</b> Aparecen estas letras a los 30-28%. Usa la misma táctica. Y si no te das cuenta de las letras, ve a donde está Housemon y ataca.",
+      "🟢 <b>Círculos Verdes (Puppet 20-18%):</b> Aparecen 4 círculos en el suelo. Cada persona va a 1 círculo diferente para evitar One-Shot.",
+      "☠️ <b>Venenos (Puppetmon):</b> Marcan a 2 jugadores. Alejarse de la party y dejarlos MUY lejos de la zona de respawn.",
+      "🏠 <b>SPAWN DE HOUSEMON (-50% HP de Puppetmon):</b> ATENCIÓN: ¡Esperar siempre a que el Tank golpee primero a Housemon!",
+      "🔵/🔴 <b>Stack/Split Housemon (70-65%):</b> El orden es: Stack -> Split -> Stack -> Split. El DPS con más daño debe quedarse en el sitio pegando.",
+      "🟢 <b>Círculos Verdes (Housemon 50-48%):</b> Aparecen 4 círculos en el suelo. Cada persona va a 1 círculo diferente.",
+      "⏩ <b>Skip Housemon (30%):</b> Hace 80k de daño a todos. Los DPS de skill deben usar F3 a los 37-35% para hacer skip.",
+      "🔄 <b>Retorno:</b> Al matar a Housemon, vuelve a Puppetmon para terminar la pelea.",
+      "🛡️ <b>Tank Check (Puppetmon 10%):</b> Pegar con todo para salvar al Tank."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "Bravery Dungeon",
+    "nome": "Bravery Dungeon",
+    "roles": {
+      "skill": {
+        "recomendados": ["Fanglongmon Shin", "Examon X"],
+        "hp_minimo": 80000,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Ouroboros o superior"
+      },
+      "aa": {
+        "recomendados": ["Gabumon Kizuna", "Shoutmon X7"],
+        "hp_minimo": 80000,
+        "hit_minimo": 13000,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["Amphimon", "Metal Seadramon Shin", "BlackShoutmon X7"],
+        "hp_minimo": 150000,
+        "de_minimo": 25000,
+        "bl_minimo": 130,
+        "ev_minimo": 100,
+        "gear_nivel": 2,
+        "gear": "Set Holy Radiant Perfect, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Defensive Order o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>AVISO:</b> Se sugiere llevar tamer skill encouragement o guardian para tener un poco más de HP y disminuir el daño de skill recibido.",
+      "⚔️ <b>Inicio:</b> Al principio los 3 Digimons DPS deben hacer stack y al 30-25% puede generar círculos azules (split) y rojos (stack), dependiendo del daño a los 14-12% puede volver a generar los círculos. Para matar más rápido se recomienda usar F3 en el 13-12%.",
+      "🔴 <b>Círculos Rojos (STACK):</b> Se genera a partir de los 70%, 30-27%, 14-12% y todos, incluyendo al tanque, deben juntarse, ya que pega 75K HP aproximadamente.",
+      "🔵 <b>Círculos Azules en ÁREA:</b> Se genera a partir de 60%, se debe esquivar porque da debuff y hace que recibas el doble de daño.",
+      "🔵 <b>Círculos Azules (Split):</b> Puede aparecer a los 25-20% y a los 14-12%, dependiendo del daño, pero deben estar separados.",
+      "🛡️ <b>Tank Check:</b> A partir del 10% se inicia un DPS CHECK y deben matar a Wargreymon lo más rápido posible o todos mueren."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "Friendship Dungeon",
+    "nome": "Friendship Dungeon",
+    "roles": {
+      "skill": {
+        "recomendados": ["Omegamon Alter B", "Omegamon Zwart D", "Lucemon X"],
+        "hp_minimo": 80000,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Ouroboros o superior"
+      },
+      "aa": {
+        "recomendados": ["Death-X-Mon X Awaken", "Gaioumon Itto Mode", "Darknessbagramon"],
+        "hp_minimo": 80000,
+        "hit_minimo": 13000,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["Barbamon X", "Metal Seadramon Shin"],
+        "hp_minimo": 150000,
+        "de_minimo": 25000,
+        "bl_minimo": 130,
+        "ev_minimo": 100,
+        "gear_nivel": 2,
+        "gear": "Set Holy Radiant Perfect, Pulsera Tank Perfect, Ropa Tank (Digital Hazard)",
+        "deck": "Defensive Order o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>AVISO:</b> Se sugiere llevar tamer skill encouragement o guardian para tener un poco más de HP y disminuir el daño de skill recibido.",
+      "⚔️ <b>Inicio:</b> Al principio los 3 Digimons DPS deben estar separados, al 50-45% activa un return a todos, cuando termine el return pueden volver a atacar y después del 10%, ya se pueden acercar. Al 70% y 40% deben esquivar los círculos azules de área. Esto es casi imposible de hacer skip, pero si tienen demasiado daño pueden usar F3 al 60% y dar skip al return.",
+      "🔴 <b>Círculos Rojos (Solo 2 de la party):</b> Se genera a partir del 70%, 40%, 20%, dependiendo del daño, se puede esquivar pero es difícil, es mejor quedarse curándose, pegan aproximadamente 30K HP.",
+      "☠️ <b>SKILL RETURN:</b> Aparece entre 50-45%, es imposible de evitar ya que aparecerán unas letras antes de activarse, deben evitar atacar y esperar a que el debuff termine para volver a atacar.",
+      "🔵 <b>Círculos Azules:</b> Esquivar lo máximo que puedas, si te aciertan aplican un debuff slow, en caso de que te acierte puedes usar un buff para quitar el debuff.",
+      "🛡️ <b>Tank Check:</b> A partir del 5% se inicia un DPS CHECK y deben matar a MetalGarurumon lo más rápido posible o todos mueren. Se sugiere guardar el F3 y usarlo al 4%, en caso de no haber daño suficiente toda la pt muere."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "Never Land Dungeon",
+    "nome": "Never Land Dungeon",
+    "roles": {
+      "skill": {
+        "recomendados": ["Examon X", "Susanomon Shin", "Fanglongmon Shin"],
+        "hp_minimo": 80000,
+        "ct_minimo": 200,
+        "cd_minimo": 300,
+        "bl_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Ouroboros o superior"
+      },
+      "aa": {
+        "recomendados": ["BloomLordmon"],
+        "hp_minimo": 80000,
+        "hit_minimo": 10000,
+        "ct_minimo": 200,
+        "cd_minimo": 300,
+        "bl_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Vaccine Fighters o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>AVISO:</b> Se sugiere llevar un digimon con AOE de bajo cooldown.",
+      "⚔️ <b>OMAE WA MO SHINDEIRU:</b> A partir del 75-70%, dependiendo del daño hace 80K de daño, se puede usar una tamer skill como protect para evitarlo.",
+      "🔵 <b>Círculo Azul:</b> Aparece a partir del 49%, deben colocarse debajo del círculo para no morir, evitar moverse o atacar hasta que desaparezca.",
+      "🛡️ <b>Invocación PETS:</b> Aparecen a partir del 40% y cada cierto tiempo vuelven a aparecer, usar el AOE para matar.",
+      "☠️ <b>DPS CHECK:</b> A partir del 10% se inicia un DPS CHECK y deben matar a Eosmon lo más rápido posible, si vas de SK puedes usar el F3 al 12% para terminar más rápido."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  },
+  {
+    "id": "Bagramon Domain",
+    "nome": "Bagramon Domain",
+    "roles": {
+      "skill": {
+        "recomendados": ["Susanomon Shin", "Omegamon X", "Alphamon Ouryuken Awaken"],
+        "hp_minimo": 80000,
+        "ct_minimo": 265,
+        "bl_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería SK Fang Lv 10/Ultimate, Pulsera SK Perfect, Ropa SK",
+        "deck": "Celestfracture (Celes) o superior"
+      },
+      "aa": {
+        "recomendados": ["BloomLordmon", "Agumon Kizuna"],
+        "hp_minimo": 80000,
+        "hit_minimo": 10000,
+        "ct_minimo": 265,
+        "cd_minimo": 350,
+        "bl_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería AA Fang Lv 10/Ultimate, Pulsera AA Perfect, Ropa AA (Warrior Shining)",
+        "deck": "Vaccine Fighters o superior"
+      },
+      "tank": {
+        "recomendados": ["IcyMagnamon", "Shoutmon DX", "SaintGargomon Shin", "Metal Seadramon Shin"],
+        "hp_minimo": 120000,
+        "hit_minimo": 10000,
+        "ct_minimo": 265,
+        "cd_minimo": 350,
+        "bl_minimo": 100,
+        "gear_nivel": 3,
+        "gear": "Set Joyería Tank Fang Lv 10/Ultimate, Pulsera Tank Perfect, Ropa Tank (Warrior Shining)",
+        "deck": "Brick Wall o superior"
+      }
+    },
+    "mecanicas": [
+      "❗ <b>AVISO:</b> Se sugiere llevar un digimon con AOE de bajo cooldown para matar las pets que salen en la primera Raid.",
+      "EN PROGRESO..."
+    ],
+    "requisitos_party": "3 DIGIS DPS (2 con HOH 3/4 High/Highest y 1 con TOL 3/4 High/Highest) + 1 TANQUE."
+  }
+]
