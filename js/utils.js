@@ -15,35 +15,39 @@ export function formatarMoeda(bits) {
 
 // === NOVO SISTEMA DE NOTIFICAÇÕES ===
 
-export function showToast(msg, type = 'info') {
+export function showToast(mensagem, tipo = 'info') {
     const container = document.getElementById('toast-container');
-    if (!container) return; 
+    if (!container) return;
 
-    // Ícones automáticos baseados no tipo
-    const icons = {
-        success: '✅',
-        error: '❌',
-        warning: '⚠️',
-        info: 'ℹ️'
-    };
-    const icon = icons[type] || icons.info;
-
-    // Criar o elemento HTML
+    // 1. Criar a notificação
     const toast = document.createElement('div');
-    toast.className = `custom-toast ${type}`;
-    toast.innerHTML = `<span class="toast-icon">${icon}</span> <span>${msg}</span>`;
+    toast.className = `custom-toast border-${tipo}`;
+    
+    // Escolher o ícone dependendo do tipo
+    let icone = 'fas fa-info-circle text-info';
+    if (tipo === 'success') icone = 'fas fa-check-circle text-success';
+    if (tipo === 'warning') icone = 'fas fa-exclamation-triangle text-warning';
+    if (tipo === 'danger') icone = 'fas fa-times-circle text-danger';
 
-    // Adicionar ao ecrã
+    toast.innerHTML = `<i class="${icone} me-2 fs-5"></i> <span>${mensagem}</span>`;
+    
+    // 2. Colocar no ecrã
     container.appendChild(toast);
 
-    // Reproduzir som subtil (Opcional, dá um toque premium)
-    // playNotificationSound(type); 
-
-    // Auto-remover após 4 segundos
+    // 3. O TEMPORIZADOR SÉNIOR (Destrói após 3 segundos)
     setTimeout(() => {
-        toast.classList.add('hide');
-        toast.addEventListener('animationend', () => toast.remove());
-    }, 4000);
+        // Faz a animação de saída (escorrega para a direita e fica invisível)
+        toast.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        
+        // Espera que a animação acabe (400ms) e apaga o lixo do HTML
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.parentNode.removeChild(toast);
+            }
+        }, 400);
+    }, 3000);
 }
 
 // Wrapper para manter compatibilidade com código antigo

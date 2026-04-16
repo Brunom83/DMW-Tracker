@@ -1,96 +1,123 @@
-// Adicionei formatarMoeda e showToast
-import { bitsParaMega, bitsParaTera, formatarMoeda, showToast } from './utils.js';
+import { formatarMoeda, showToast } from './utils.js';
 import { Validator } from './validators.js';
 
 export class Eggs {
     constructor() {
-        this.eggs = [];
+        // Carrega logo no início de forma direta
+        this.eggs = this.carregarDados();
         this.onChange = null;
-        this.carregarDados();
-        // Nota: Os eventos são geridos pelo app.js agora para centralizar,
-        // mas mantemos métodos públicos para serem chamados.
-        window.eggs = this; // Hack necessário para o botão de remover (onclick no HTML) funcionar
+        
+        // Inicia o "olheiro" de cliques
+        this.inicializarEventos();
     }
 
     setOnChangeCallback(callback) {
         this.onChange = callback;
     }
 
+    // 🛡️ Delegação de Eventos (Adeus Hack do window.eggs!)
+    inicializarEventos() {
+        const lista = document.getElementById('listaEggs');
+        if (lista) {
+            lista.addEventListener('click', (e) => {
+                const btnRemover = e.target.closest('.btn-remover-egg');
+                if (btnRemover) {
+                    const index = parseInt(btnRemover.dataset.index, 10);
+                    this.removerEgg(index);
+                }
+            });
+        }
+    }
+
     adicionarEgg() {
-        const tipoSelect = document.getElementById('tipoEgg');
+        const selectElement = document.getElementById('tipoEgg');
+        const inputQtd = document.getElementById('quantidadeEgg');
 
         // --- VALIDAÇÃO ---
-        // Validar Quantidade (tem de ser positivo)
         const quantidade = Validator.validatePositiveNumber('quantidadeEgg', 'Quantidade');
         
-        // Validação extra: Quantidade tem de ser maior que 0 (o validador aceita 0, mas nós não queremos adicionar 0 eggs)
-        if (quantidade === null) return; // Erro visual já foi mostrado
-        if (quantidade === 0) {
-            Validator.showError(document.getElementById('quantidadeEgg'), "Quantidade deve ser maior que 0!");
+        if (quantidade === null || quantidade <= 0) {
+            if (quantidade === 0) Validator.showError(inputQtd, "A quantidade deve ser maior que 0!");
             return;
         }
 
-        const tipo = tipoSelect.options[tipoSelect.selectedIndex].text;
-        const valor = parseInt(tipoSelect.value);
+        // --- PROCESSAMENTO ---
+        const tipo = selectElement.options[selectElement.selectedIndex].text;
+        const valorUnitario = parseInt(selectElement.value, 10);
         
         this.eggs.push({ 
             tipo, 
             quantidade, 
-            valorUnitario: valor, 
-            total: quantidade * valor 
+            valorUnitario, 
+            total: quantidade * valorUnitario 
         });
 
-        // Limpar input visualmente (remover erro se existisse)
-        const inputQtd = document.getElementById('quantidadeEgg');
+        // --- LIMPEZA UI ---
         inputQtd.value = '0';
         inputQtd.classList.remove('is-invalid');
 
-        this.salvarDados();
-        this.atualizarCalculadoraEggs();
-        if (this.onChange) this.onChange();
-        
+        // --- ATUALIZAÇÃO ---
+        this.sincronizar();
         showToast(`Adicionado: ${quantidade}x ${tipo}`, "success");
     }
 
     removerEgg(index) {
         this.eggs.splice(index, 1);
+        this.sincronizar();
+    }
+
+    // ⚙️ O Motor Central (Evita repetição de código)
+    sincronizar() {
         this.salvarDados();
-        this.atualizarCalculadoraEggs();
+        this.atualizarCalculadoraEggs(); // Alterei o nome de renderizar para manter compatibilidade com o teu app.js
         if (this.onChange) this.onChange();
     }
 
-    // --- AQUI ESTÁ A MUDANÇA VISUAL ---
+    // 🎨 Apenas Renderização Visual
     atualizarCalculadoraEggs() {
         const lista = document.getElementById('listaEggs');
-        if (!lista) return;
+        const elementoTotal = document.getElementById('totalEggsConsolidado');
+        
+        if (!lista || !elementoTotal) return;
 
-        // Renderiza a lista
         if (this.eggs.length === 0) {
             lista.innerHTML = '<p class="text-muted text-center mt-3">Nenhum egg adicionado...</p>';
-        } else {
-            lista.innerHTML = this.eggs.map((egg, i) => `
-                <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2 mb-2">
-                    <div>
-                        <strong class="text-light">${egg.tipo}</strong><br>
-                        <small class="text-light">${egg.quantidade} × ${egg.valorUnitario} = ${formatarMoeda(egg.total)}</small>
-                    </div>
-                    <button class="btn btn-sm btn-outline-danger" onclick="window.eggs.removerEgg(${i})">×</button>
-                </div>
-            `).join('');
+            elementoTotal.textContent = "0T 0M 0B";
+            return;
         }
 
-        // Calcula o total
-        const totalBits = this.eggs.reduce((t, e) => t + e.total, 0);
-        
-        // Atualiza o display GRANDE (X T X M X B)
-        const textoFormatado = formatarMoeda(totalBits);
-        const elementoTotal = document.getElementById('totalEggsConsolidado');
-        if(elementoTotal) elementoTotal.textContent = textoFormatado;
+        // O segredo está no 'data-index' do botão
+        lista.innerHTML = this.eggs.map((egg, index) => `
+            <div class="d-flex justify-content-between align-items-center border-bottom border-secondary pb-2 mb-2">
+                <div>
+                    <strong class="text-light">${egg.tipo}</strong><br>
+                    <small class="text-light">${egg.quantidade} × ${egg.valorUnitario} = ${formatarMoeda(egg.total)}</small>
+                </div>
+                <button class="btn btn-sm btn-outline-danger btn-remover-egg" data-index="${index}">×</button>
+            </div>
+        `).join('');
+
+        const totalBits = this.eggs.reduce((acc, egg) => acc + egg.total, 0);
+        elementoTotal.textContent = formatarMoeda(totalBits);
     }
 
-    copiarParaDepois() {
+    // 📋 Agora copia MESMO para a área de transferência
+    async copiarParaDepois() {
         const totalBits = this.eggs.reduce((t, e) => t + e.total, 0);
-        showToast(`💰 Valor copiado: ${formatarMoeda(totalBits)}`, "info");
+        if (totalBits === 0) {
+            showToast("A tua bag está vazia, não há nada para copiar!", "warning");
+            return;
+        }
+
+        const valorFormatado = formatarMoeda(totalBits);
+        
+        try {
+            await navigator.clipboard.writeText(valorFormatado);
+            showToast(`💰 Copiado para o teclado: ${valorFormatado}`, "info");
+        } catch (err) {
+            showToast("O teu navegador bloqueou a cópia.", "danger");
+            console.error("Erro ao copiar:", err);
+        }
     }
 
     salvarDados() {
@@ -98,7 +125,7 @@ export class Eggs {
     }
 
     carregarDados() {
-        const dados = JSON.parse(localStorage.getItem('dmwEggs'));
-        if (dados) this.eggs = dados;
+        const dados = localStorage.getItem('dmwEggs');
+        return dados ? JSON.parse(dados) : [];
     }
 }
