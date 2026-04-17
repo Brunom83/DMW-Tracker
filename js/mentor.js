@@ -16,7 +16,7 @@ export class MentorDMW {
             const dados = await res.json();
             this.regrasReborn = dados[0].requisitos_logicos;
         } catch (e) {
-            this.regrasReborn = { min_level: 120, min_size_percent: 135, clone_stats: "75/75" };
+            this.regrasReborn = { min_level: 120, min_size_percent: 139.9, clone_stats: "75/75" };
         }
     }
 
@@ -37,15 +37,49 @@ export class MentorDMW {
 
     analisarDigimon(level, size, cloneStatus) {
         if (!this.regrasReborn) return `<div class="alert alert-info">Leyendo datos...</div>`;
+        
+        // Vai buscar o Role selecionado
+        const roleDropdown = document.getElementById('statRole');
+        const role = roleDropdown ? roleDropdown.value : 'sk'; 
+        
         let conselhos = [];
         let pronto = true;
 
-        if (level < this.regrasReborn.min_level) { conselhos.push(`🔴 Falta Nivel (${this.regrasReborn.min_level})`); pronto = false; }
-        if (size < this.regrasReborn.min_size_percent) { conselhos.push(`🔴 Size bajo (${this.regrasReborn.min_size_percent}%)`); pronto = false; }
-        if (cloneStatus !== 'perfect') { conselhos.push(`🔴 Clones Débiles`); pronto = false; }
+        if (level < this.regrasReborn.min_level) { 
+            conselhos.push(`🔴 Falta Nivel (${this.regrasReborn.min_level})`); 
+            pronto = false; 
+        }
 
-        if (pronto) return `<div class="alert alert-success border-success">✅ <b>¡Listo para Reborn!</b></div>`;
-        return `<div class="alert alert-warning">⚠️ <b>Aún no:</b><ul><li>${conselhos.join('</li><li>')}</li></ul></div>`;
+        // --- A LÓGICA DO GUILD MASTER (EM ESPANHOL) ---
+        let perdeuStats = "";
+        if (size >= 135 && size < 139.9) {
+            if (role === 'ta') perdeuStats = "¡estás perdiendo cerca de 4500 HP y 1800 DE!";
+            else if (role === 'aa') perdeuStats = "¡estás perdiendo cerca de 2700 HP y 900 AT!";
+            else perdeuStats = "¡estás perdiendo miles de HP y Daño en vano!";
+            
+            conselhos.push(`⚠️ <b>Size débil para Reborn (${size}%).</b> Como eres ${role.toUpperCase()}, ${perdeuStats} El Guild Master recomienda llegar a <b>139.9% o 140%</b>.`);
+            pronto = false;
+        } else if (size < 135) {
+            conselhos.push(`🔴 Size crítico (${size}%). Ni lo pienses.`); 
+            pronto = false;
+        }
+
+        if (cloneStatus !== 'perfect') { 
+            conselhos.push(`🔴 Clones Débiles (Necesitas 75/75)`); 
+            pronto = false; 
+        }
+
+        if (pronto && size >= 139.9) {
+            return `<div class="alert alert-success border-success">
+                        ✅ <b>¡Listo para un Reborn Perfecto!</b><br>
+                        <small>Con ${size}%, recibirás los bonus máximos para tu clase. ¡Dale!</small>
+                    </div>`;
+        }
+
+        return `<div class="alert alert-warning">
+                    ⚠️ <b>Aún no estás en el punto ideal:</b>
+                    <ul class="mb-0 mt-2"><li>${conselhos.join('</li><li class="mt-1">')}</li></ul>
+                </div>`;
     }
 
     gerarDicaAvancada(stat, role, nivel_exigido) {

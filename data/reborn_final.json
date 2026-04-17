@@ -1,4 +1,4 @@
 [
-{"sistema": "Reborn", "requisitos_logicos": {"min_level": 120, "min_size_percent": 135, "clone_stats": "0/75", "requires_transcendence": true}},
+{"sistema": "Reborn", "requisitos_logicos": {"min_level": 120, "min_size_percent": 139.9, "clone_stats": "0/75", "requires_transcendence": true}},
 {"tipo": "sistema_colecao", "nome": "Deck System", "url": "https://digitalmastersworld.wiki.gg/wiki/Deck_System", "status": "Pendente de extração dos Digimons necessários"}
 ]
