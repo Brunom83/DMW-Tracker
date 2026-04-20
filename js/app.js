@@ -133,7 +133,7 @@ class DMWTracker {
         if (btnMentor) {
             btnMentor.addEventListener('click', () => {
                 const lvl = parseInt(document.getElementById('digiLevel').value) || 1;
-                const size = parseInt(document.getElementById('digiSize').value) || 100;
+                const size = parseFloat(document.getElementById('digiSize').value) || 100;
                 const clone = document.getElementById('digiClone').value;
                 const respostaHTML = this.mentor.analisarDigimon(lvl, size, clone);
                 const area = document.getElementById('rebornFeedbackArea');

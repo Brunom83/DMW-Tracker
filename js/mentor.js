@@ -3,10 +3,12 @@ export class MentorDMW {
         this.regrasReborn = null;
         this.dungeonsData = [];
         this.gearTierList = null; 
+        this.tabelaReborn = null; // Alojamento para a nova tabela de décimas
 
         this.carregarDadosBase();
         this.carregarDungeons();
         this.carregarGear();
+        this.carregarTabelaReborn(); // Dispara o carregamento do JSON
     }
 
     async carregarDadosBase() {
@@ -16,7 +18,8 @@ export class MentorDMW {
             const dados = await res.json();
             this.regrasReborn = dados[0].requisitos_logicos;
         } catch (e) {
-            this.regrasReborn = { min_level: 120, min_size_percent: 139.9, clone_stats: "75/75" };
+            // Agora o tamanho perfeito base é 139.99
+            this.regrasReborn = { min_level: 120, min_size_percent: 139.99, clone_stats: "75/75" };
         }
     }
 
@@ -35,12 +38,25 @@ export class MentorDMW {
         } catch (e) { console.error("Error JSON Gear", e); }
     }
 
+    // A Nova Função que puxa a tua Base de Dados Dinâmica
+    async carregarTabelaReborn() {
+        try {
+            const res = await fetch('./data/reborn_stats.json');
+            this.tabelaReborn = await res.json();
+            console.log("🧬 Tabla de Reborn Dinámica Cargada!");
+        } catch (e) { console.error("Error JSON Reborn Table", e); }
+    }
+
     analisarDigimon(level, size, cloneStatus) {
-        if (!this.regrasReborn) return `<div class="alert alert-info">Leyendo datos...</div>`;
+        if (!this.regrasReborn || !this.tabelaReborn) return `<div class="alert alert-info">Leyendo datos del servidor...</div>`;
         
-        // Vai buscar o Role selecionado
+        const sizeFloat = parseFloat(size);
         const roleDropdown = document.getElementById('statRole');
-        const role = roleDropdown ? roleDropdown.value : 'sk'; 
+        let role = roleDropdown ? roleDropdown.value.toLowerCase() : 'sk'; 
+        
+        // Amortecedores
+        if (role === 'support') role = 'sup';
+        if (role === 'tank') role = 'ta';
         
         let conselhos = [];
         let pronto = true;
@@ -50,18 +66,71 @@ export class MentorDMW {
             pronto = false; 
         }
 
-        // --- A LÓGICA DO GUILD MASTER (EM ESPANHOL) ---
-        let perdeuStats = "";
-        if (size >= 135 && size < 139.9) {
-            if (role === 'ta') perdeuStats = "¡estás perdiendo cerca de 4500 HP y 1800 DE!";
-            else if (role === 'aa') perdeuStats = "¡estás perdiendo cerca de 2700 HP y 900 AT!";
-            else perdeuStats = "¡estás perdiendo miles de HP y Daño en vano!";
-            
-            conselhos.push(`⚠️ <b>Size débil para Reborn (${size}%).</b> Como eres ${role.toUpperCase()}, ${perdeuStats} El Guild Master recomienda llegar a <b>139.9% o 140%</b>.`);
-            pronto = false;
-        } else if (size < 135) {
-            conselhos.push(`🔴 Size crítico (${size}%). Ni lo pienses.`); 
-            pronto = false;
+        // Variável para guardar a nossa nova super tabela
+        let htmlTabelaDireita = '';
+
+        if (this.tabelaReborn[role]) {
+            const tabelaRole = this.tabelaReborn[role];
+            const maxBracket = tabelaRole[0]; 
+            const currBracket = tabelaRole.find(s => sizeFloat >= s.min);
+
+            if (currBracket) {
+                let linhasTabela = '';
+                const statsMax = maxBracket.stats;
+                const statsCur = currBracket.stats;
+
+                for (const statName in statsMax) {
+                    const ganha = statsCur[statName];
+                    const perde = parseFloat((statsMax[statName] - statsCur[statName]).toFixed(2));
+                    const formatStat = (val) => ['SKD', 'CD', 'ATT', 'EV', 'BL'].includes(statName) ? `${val}%` : val;
+
+                    // Se ele tem 140%, a perda é 0, logo fica um traço cinzento em vez de "-0"
+                    const perdaHtml = perde > 0 
+                        ? `<td class="text-danger fw-bold align-middle">-${formatStat(perde)}</td>` 
+                        : `<td class="text-muted align-middle">-</td>`;
+
+                    linhasTabela += `
+                        <tr>
+                            <td class="text-light fw-bold align-middle">${statName}</td>
+                            <td class="text-success align-middle">+${formatStat(ganha)}</td>
+                            ${perdaHtml}
+                        </tr>
+                    `;
+                }
+
+                // Cria o visual da Tabela para o Lado Direito
+                const tituloIcon = sizeFloat >= 139.99 ? 'check-circle text-success' : 'exclamation-triangle text-warning';
+                const tituloCor = sizeFloat >= 139.99 ? 'text-success border-success' : 'text-warning border-warning';
+
+                htmlTabelaDireita = `
+                    <h5 class="${tituloCor} border-bottom pb-3 mb-3"><i class="fas fa-${tituloIcon}"></i> Análisis de Reborn System</h5>
+                    <p class="text-light mb-3">Proyección de status para <b>${role.toUpperCase()}</b> con Size <b>${sizeFloat}%</b>:</p>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover table-bordered border-secondary text-center shadow-sm">
+                            <thead class="table-active">
+                                <tr class="text-info">
+                                    <th class="py-2">Status</th>
+                                    <th class="py-2">Recibes</th>
+                                    <th class="py-2">Pierdes (vs 140%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${linhasTabela}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+                if (sizeFloat >= 135 && sizeFloat < 139.99) {
+                    conselhos.push(`⚠️ <b>Size débil para Reborn (${sizeFloat}%).</b><br>
+                    <span class="text-light">Mira el <b>Motor de Progresión</b> a la derecha para ver la tabla con los stats exactos que pierdes.</span><br>
+                    <span class="text-warning small mt-2 d-block">El Guild Master exige llegar a 139.99% o 140%.</span>`);
+                    pronto = false;
+                }
+            } else if (sizeFloat < 135) {
+                conselhos.push(`🔴 Size crítico (${sizeFloat}%). Ni lo pienses.`); 
+                pronto = false;
+            }
         }
 
         if (cloneStatus !== 'perfect') { 
@@ -69,16 +138,25 @@ export class MentorDMW {
             pronto = false; 
         }
 
-        if (pronto && size >= 139.9) {
-            return `<div class="alert alert-success border-success">
+        // --- O TRUQUE: INJETAR NA DIREITA ---
+        const painelDireito = document.getElementById('mentorFeedbackArea');
+        if (painelDireito && htmlTabelaDireita !== '') {
+            painelDireito.innerHTML = htmlTabelaDireita;
+        }
+
+        // --- RETORNO NORMAL PARA A ESQUERDA (ALERTA PEQUENO) ---
+        if (pronto && sizeFloat >= 139.99) {
+            return `<div class="alert alert-success border-success shadow-sm">
                         ✅ <b>¡Listo para un Reborn Perfecto!</b><br>
-                        <small>Con ${size}%, recibirás los bonus máximos para tu clase. ¡Dale!</small>
+                        <small>Mira la tabla a la derecha. ¡No pierdes nada de stats! ¡Dale el Reborn!</small>
                     </div>`;
         }
 
-        return `<div class="alert alert-warning">
+        return `<div class="alert alert-warning shadow-sm">
                     ⚠️ <b>Aún no estás en el punto ideal:</b>
-                    <ul class="mb-0 mt-2"><li>${conselhos.join('</li><li class="mt-1">')}</li></ul>
+                    <ul class="mb-0 mt-2" style="list-style-type: none; padding-left: 0;">
+                        <li>${conselhos.join('</li><li class="mt-2 pt-2 border-top border-secondary">')}</li>
+                    </ul>
                 </div>`;
     }
 
