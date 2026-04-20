@@ -1,0 +1,178 @@
+[
+  {
+    "id": "guia_shoutmon_x7",
+    "tipo": "digimon_free",
+    "nome": "Guía: Shoutmon X7 (SSS+ AA DA)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "quest_inicial": "La quest inicial comienza en Calumon en Dats Center y debes ir con Shoutmon como tu digimon principal. Para más detalles, ve a la wiki de DMW.",
+    "requisitos_itens": [
+      {
+        "nome": "10 Burning Rocker",
+        "como_obter": "Se obtienen al completar 10 daily quest sacrificando a 1 Shoutmon, Greymon y Mailbirdramon a nivel 120 por día (requiere de 10 días)."
+      },
+      {
+        "nome": "15 Divine Aura",
+        "como_obter": "Se obtienen de la DG Bagra Domain."
+      },
+      {
+        "nome": "200 Teras y 50 Code Crown",
+        "como_obter": "Costo de crafteo necesario para el proceso."
+      }
+    ],
+    "requisitos_digimons": [
+      {
+        "grupo": "Requisitos de Shoutmon X5",
+        "detalhe": "Tener desbloqueado y de level 70+ todos los digis: Shoutmon, Balistamon, Dorulumon, Starmon, Sparrowmon."
+      },
+      {
+        "grupo": "Requisitos Blue Flare",
+        "detalhe": "Tener desbloqueado y de level 120: Greymon C y Mailbirdramon."
+      }
+    ]
+  },
+
+  {
+    "id": "guia_blackshoutmon_x7",
+    "tipo": "digimon_free",
+    "nome": "Guía: Shoutmon X7 (SSS+ TA DA)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "quest_inicial": "La quest inicial comienza en Calumon en Dats Center y debes ir con Shoutmon como tu digimon principal. Para más detalles, ve a la wiki de DMW.",
+    "requisitos_itens": [
+      {
+        "nome": "Corrupted Code Crown",
+        "como_obter": "Se obtienen al completar GreenZone (EX)."
+      },
+      {
+        "nome": "200 Teras y 50 Code Crown",
+        "como_obter": "Costo de crafteo necesario para el proceso."
+      }
+    ]
+  },
+
+  {
+    "id": "guia_bloomlordmon",
+    "tipo": "digimon_free",
+    "nome": "Guía: BloomLordmon (SSS+ AA VA)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "requisitos_itens": [
+      {
+        "nome": "15 Nature Crystal",
+        "como_obter": "Se obtienen al completar 15 veces la dungeon Shopping Mall (Bloomlordmon DG)."
+      },
+      {
+        "nome": "40 Great Nature Stone",
+        "como_obter": "Se obtienen al sacrificar 40 palmon (original) a nível 120."
+      },
+      {
+        "nome": "200 Teras",
+        "como_obter": "Costo de crafteo necesario para el proceso."
+      }
+    ]
+  },
+
+  {
+    "id": "guia_bagramon",
+    "tipo": "digimon_free",
+    "nome": "Guía Bagramon (SSS+ AA VI)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "requisitos_itens": [
+      {
+        "nome": "15 Evil Crystal",
+        "como_obter": "Se obtienen al completar 15 veces la dungeon Bagramon Domain."
+      },
+      {
+        "nome": "200 Teras y 50 Code Crown",
+        "como_obter": "Costo de crafteo necesario para el proceso."
+      }
+    ],
+    "requisitos_digimons": [
+      {
+        "grupo": "Requisitos de Bagramon X5",
+        "detalhe": "Tener desbloqueado con todas sus líneas evolutivas y con level 120 a Bagramon, SkullKnightmon y DeadlyAxemon."
+      }
+    ]
+  },
+  
+  {
+    "id": "guia_fanglomon_shin",
+    "tipo": "digimon_free",
+    "nome": "Guía: Fanglomon Shin (SSS+ SK DA)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "requisitos_itens": [
+      {
+        "nome": "1 Baihumon Core",
+        "como_obter": "Se obtienen al sacrificar 11 Baihumon a nivel 120 + 25 Flawless Crystal of Trace."
+      },
+      {
+        "nome": "1 Zhuqiaomon Core",
+        "como_obter": "Se obtienen al sacrificar 11 Zhuqiaomon a nivel 120 + 25 Uprising Infernal Flame Crystal."
+      },
+      {
+        "nome": "1 Xuanwumon Core",
+        "como_obter": "Se obtienen al sacrificar 11 Xuanwumon a nivel 120 + 25 Jack Frost of Water Crystal."
+      },
+      {
+        "nome": "1 Qinglongmon Core",
+        "como_obter": "Se obtienen al sacrificar 11 Qinglongmon a nivel 120 + 50 Thunder Gods Lightning Crystal."
+      },
+      {
+        "nome": "25 Teras + 30 Fanrokou"
+      }
+    ]
+  },
+
+  {
+    "id": "guia_susanomon_shin",
+    "tipo": "digimon_free",
+    "nome": "Guía: Susanomon Shin (SSS+ SK VA)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "requisitos_itens": [
+      {
+        "nome": "1 Overseer of Destruction",
+        "como_obter": "Se obtienen al sacrificar 1 spirit of the Lunar (Ese se obtiene al sacrificar Lunar Kaisergreymon lv 120) y 1 spirit of the Solar (Ese se obtiene al sacrificar Solar Magnagarurumon lv 120)."
+      },
+      {
+        "nome": "1 Overseer of Regeneration",
+        "como_obter": "Se obtienen al sacrificar 1 spirit of the Lunar (Ese se obtiene al sacrificar Lunar Kaisergreymon lv 120) y 1 spirit of the Solar (Ese se obtiene al sacrificar Solar Magnagarurumon lv 120)."
+      },
+      {
+        "nome": "90 Cosmic Soul",
+        "como_obter": "Se obtienen al matar 90 Susano Shin de las cartas V1 que dan en coliseo hero y extreme."
+      },
+      {
+        "nome": "40 Teras"
+      }
+    ]
+  },
+
+  {
+    "id": "guia_omegamon_alter_b",
+    "tipo": "digimon_free",
+    "nome": "Guía: Omegamon Alter B (SSS+ SK VI)",
+    "descricao": "Nota: Se llaman FREE por que no requieren cargar Crown o comprar el item a otro tamer, pero eso no significa que no cueste Teras y tiempo.",
+    "requisitos_itens": [
+      {
+        "nome": "30 Berserker Core",
+        "como_obter": "Se obtienen al completar 30 veces la dungeon Berserker Arena."
+      },
+      {
+        "nome": "150 Teras"
+      },
+      {
+        "nome": "2 Undertemined Black Digitron",
+        "como_obter": "Se obtienen con 2 quests."
+      }
+      
+      ],
+    "requisitos_quest": [
+      {
+        "grupo": "Quest 1",
+        "detalhe": "Matar 20 Sakuyamon, 20 Megagargomon y 20 Dukemon del mapa shinjuku western area day."
+      },
+      {
+        "grupo": "Quest 2",
+        "detalhe": "Obtener 20 Emblem of Knight matando a AOX en coliseo hero"
+      }
+    ]
+    }
+]

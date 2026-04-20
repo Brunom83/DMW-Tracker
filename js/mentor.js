@@ -111,7 +111,7 @@ export class MentorDMW {
                                 <tr class="text-info">
                                     <th class="py-2">Status</th>
                                     <th class="py-2">Recibes</th>
-                                    <th class="py-2">Pierdes (vs 140%)</th>
+                                    <th class="py-2">Pierdes (vs 139.99% - 140%)</th>
                                 </tr>
                             </thead>
                             <tbody>

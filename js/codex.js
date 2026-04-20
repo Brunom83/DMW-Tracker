@@ -1,20 +1,29 @@
 export class CodexManager {
     constructor() {
         this.dungeonsData = [];
+        this.guiasFreeData = []; // Variável nova para guardar os dados dos Digimons FREE
         
         // Expor as funções para o HTML conseguir chamá-las nos botões (onclick)
         window.voltarParaListaCodex = () => this.mostrarLista();
         window.abrirGuiaCodex = (id) => this.mostrarGuia(id);
+        window.abrirGuiaFree = (guiaData) => this.desenharGuiaFreeSSS(guiaData); // Atalho novo para os Guias Free
     }
 
     async inicializar() {
         try {
-            const res = await fetch('./data/dungeons_guild.json');
-            this.dungeonsData = await res.json();
+            // 1. Carrega o JSON das Dungeons
+            const resDungeons = await fetch('./data/dungeons_guild.json');
+            this.dungeonsData = await resDungeons.json();
+
+            // 2. Carrega o JSON dos Digimons FREE SSS+
+            const resGuias = await fetch('./data/guias_geral_obter_digimon.json');
+            this.guiasFreeData = await resGuias.json();
+
+            // 3. Desenha tudo no ecrã
             this.renderizarLista();
-            console.log("📖 Codex: Base de Dados carregada e renderizada.");
+            console.log("📖 Codex: Base de Dados (Dungeons & Free SSS+) carregada e renderizada.");
         } catch (e) { 
-            console.error("❌ Codex: Erro ao ler JSON", e); 
+            console.error("❌ Codex: Erro ao ler JSONs", e); 
         }
     }
 
@@ -23,9 +32,13 @@ export class CodexManager {
         if (!container) return;
 
         let html = '';
+
+        // --- SECÇÃO 1: DUNGEONS ---
+        html += `<div class="col-12 mb-2"><h4 class="text-warning border-bottom border-warning pb-2"><i class="fas fa-dragon"></i> Dungeons da Guild</h4></div>`;
+        
         this.dungeonsData.forEach(dung => {
             html += `
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card h-100 border-secondary bg-dark" style="cursor: pointer; transition: 0.2s;" onclick="window.abrirGuiaCodex('${dung.id}')" onmouseover="this.classList.replace('border-secondary','border-warning')" onmouseout="this.classList.replace('border-warning','border-secondary')">
                     <div class="card-body text-center d-flex flex-column justify-content-center">
                         <i class="fas fa-book-open fa-2x text-warning mb-3"></i>
@@ -35,6 +48,28 @@ export class CodexManager {
                 </div>
             </div>`;
         });
+
+        // --- SECÇÃO 2: GUIAS FREE SSS+ ---
+        if (this.guiasFreeData && this.guiasFreeData.length > 0) {
+            html += `<div class="col-12 mt-4 mb-2"><h4 class="text-info border-bottom border-info pb-2"><i class="fas fa-unlock-alt"></i> Guías de Digimons FREE SSS+</h4></div>`;
+            
+            this.guiasFreeData.forEach(guia => {
+                // Prepara o objeto para ser passado via HTML onclick
+                const guiaJson = JSON.stringify(guia).replace(/"/g, '&quot;');
+                html += `
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100 border-info bg-dark" style="cursor: pointer; transition: 0.3s;" onclick="window.abrirGuiaFree(${guiaJson})">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <i class="fas fa-robot fa-3x text-info mb-3"></i>
+                                <h5 class="text-light">${guia.nome}</h5>
+                                <span class="text-muted small mt-2">Ver Requisitos</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
         container.innerHTML = html;
     }
 
@@ -116,5 +151,95 @@ export class CodexManager {
     mostrarLista() {
         document.getElementById('listaDungeonsCodex').classList.remove('d-none');
         document.getElementById('guiaDungeonDetalhado').classList.add('d-none');
+    }
+
+    desenharGuiaFreeSSS(guiaData) {
+        let html = `
+            <div class="card border-info mb-4 shadow-lg" style="background: var(--bg-dark);">
+                <div class="card-header bg-dark text-info border-bottom border-info d-flex align-items-center">
+                    <i class="fas fa-robot fa-2x me-3"></i>
+                    <h3 class="m-0 fw-bold">${guiaData.nome}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning border-warning text-dark mb-4 fw-bold">
+                        <i class="fas fa-exclamation-triangle"></i> ${guiaData.descricao}
+                    </div>
+        `;
+
+        if (guiaData.quest_inicial) {
+            html += `
+                <p class="text-light fs-6 mb-4 p-3 border border-secondary rounded" style="background: rgba(255,255,255,0.05);">
+                    <i class="fas fa-map-marker-alt text-danger me-2"></i> <b>Inicio:</b> ${guiaData.quest_inicial}
+                </p>
+            `;
+        }
+
+        html += `<div class="row g-4">`;
+
+        // ---------------- COLUNA 1: ITENS ----------------
+        if (guiaData.requisitos_itens && guiaData.requisitos_itens.length > 0) {
+            html += `
+                <div class="col-md-6">
+                    <h5 class="text-danger border-bottom border-secondary pb-2"><i class="fas fa-box-open"></i> Ítems Requeridos</h5>
+                    <div class="list-group list-group-flush bg-transparent mt-3">
+            `;
+            guiaData.requisitos_itens.forEach(item => {
+                html += `
+                    <div class="list-group-item bg-transparent border-secondary text-light px-0 py-2">
+                        <h6 class="m-0 fw-bold text-warning">${item.nome}</h6>
+                        ${item.como_obter ? `<p class="mb-0 text-muted small mt-1">${item.como_obter}</p>` : ''}
+                    </div>
+                `;
+            });
+            html += `</div></div>`;
+        }
+
+        // ---------------- COLUNA 2: DIGIMONS E/OU QUESTS ----------------
+        if (guiaData.requisitos_digimons || guiaData.requisitos_quest) {
+            html += `<div class="col-md-6">`;
+            
+            if (guiaData.requisitos_digimons) {
+                html += `<h5 class="text-primary border-bottom border-secondary pb-2"> Digimons Requeridos</h5>
+                         <div class="list-group list-group-flush bg-transparent mt-3 mb-4">`;
+                guiaData.requisitos_digimons.forEach(digi => {
+                    html += `
+                        <div class="list-group-item bg-transparent border-secondary text-light px-0 py-2">
+                            <h6 class="m-0 fw-bold text-info">${digi.grupo}</h6>
+                            <p class="mb-0 text-muted small mt-1">${digi.detalhe}</p>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            if (guiaData.requisitos_quest) {
+                html += `<h5 class="text-success border-bottom border-secondary pb-2"><i class="fas fa-scroll"></i> Quests Necesarias</h5>
+                         <div class="list-group list-group-flush bg-transparent mt-3">`;
+                guiaData.requisitos_quest.forEach(quest => {
+                    html += `
+                        <div class="list-group-item bg-transparent border-secondary text-light px-0 py-2">
+                            <h6 class="m-0 fw-bold text-success">${quest.grupo}</h6>
+                            <p class="mb-0 text-muted small mt-1">${quest.detalhe}</p>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            html += `</div>`;
+        }
+
+        html += `
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const container = document.getElementById('conteudoGuia');
+        if(container) {
+            container.innerHTML = html;
+            document.getElementById('listaDungeonsCodex').classList.add('d-none');
+            document.getElementById('guiaDungeonDetalhado').classList.remove('d-none');
+        }
     }
 }

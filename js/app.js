@@ -228,4 +228,6 @@ class DMWTracker {
     }
 }
 
+
+
 document.addEventListener('DOMContentLoaded', () => { window.dmwTracker = new DMWTracker(); });
